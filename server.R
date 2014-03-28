@@ -12,8 +12,10 @@ locationtable <- data.frame(Nym=character(),
                             Longitude=numeric(),
                             Radius=numeric())
 
+set.seed(seed = 646468449*runif(1))
+
 shinyServer(function(input, output) {
-#     # Reactive dependencies
+    # Reactive dependencies
     buttonClicked <- reactive(input$paintupdate)
     make.noise <- reactive({
       if(buttonClicked() > 0) {
@@ -39,7 +41,7 @@ shinyServer(function(input, output) {
     #     re-executed when inputs change
     #  2) Its output type is a plot 
     #
-    theworld <- reactive({
+    theworld <- function() {
       buttonClicked()  
       isolate({
         par(mar = rep(0,4))
@@ -63,10 +65,10 @@ shinyServer(function(input, output) {
         }
       })
       
-    })
+    }
     
     output$myworld <- renderPlot({
-      print(theworld())
+      theworld()
     }, height = 640)
 
     output$clickcoord <- renderPrint({
@@ -130,8 +132,7 @@ shinyServer(function(input, output) {
 # function to actually write the image file
 # http://stackoverflow.com/questions/14810409/save-plots-made-in-a-shiny-app?rq=1
           png(file)
-          myplot <- theworld()
-          print(myplot)
+          theworld()
           dev.off()
           contentType = 'image/png'
       })
