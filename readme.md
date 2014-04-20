@@ -3,11 +3,11 @@ Info
 
 ### What is this?
 
-Fuzzy Locator is a toy app that demonstrates the concept of *differential privacy* in announcing your location.  As Cynthia Dwork [showed in 2006](http://www.msr-waypoint.com/pubs/64346/dwork.pdf), it is impossible to create a database that is of use to anybody and guarantee *absolute privacy* at the same time. One approach to mitigating this risk is adding exponentially distributed noise to the data, as mentioned in the paper.
+Fuzzy Locator is a toy app that (I hope) demonstrates the concept of *differential privacy* in announcing your location.  As Cynthia Dwork [showed in 2006](http://www.msr-waypoint.com/pubs/64346/dwork.pdf), it is impossible to create a database that is of use to anybody and guarantee *absolute privacy* at the same time. One approach to mitigating this risk is adding exponentially distributed noise to the data, as mentioned in the paper.
 
 ### Why?
 
-Back in the 1990s, when the Internet was wild and free, kids (and adults, and aliens, and creatures from Beyond) would get on relatively anonymous chats like IRC and speak pretty frankly about whatever they were thinking, in whatever chatroom they happened to be in at the time. Just about nobody used their "real" names, though, and there weren't many data mining algorithms in play to pry that information out of their speaking style. One way to get to know somebody was to ask, `a/s/l?`. This was short for "what's your age, sex, and location?" Naturally, you were free to answer however you liked, which made it that much more interesting.
+Back in the 1990s, when the Internet was wild and free, kids (and adults, and aliens, and creatures from Beyond) could get on relatively anonymous chats like IRC and speak pretty frankly about whatever they were thinking, in whatever chatroom they happened to be in at the time. Just about nobody used their "real" names, though, and there weren't many data mining algorithms in play to pry that information out of their speaking style. One way to get to know somebody was to ask, `a/s/l?`. This was short for "what's your age, sex, and location?" Naturally, you were free to answer however you liked, which made it that much more interesting.
 
 Nowadays multinational conglomerates demand "real" names from their users, mainly for the purpose of recording/predicting their behavior and trying to get them to buy stuff. Your IP address gives away your location, [typically within a few hundred meters](http://www.ipfingerprints.com/). Algorithms have been developed to [figure out your gender](http://www.hackerfactor.com/GenderGuesser.php) (whatever that means) from the words you use.
 

@@ -32,6 +32,7 @@ shinyServer(function(input, output) {
           sqrt(2)/2
         print(x.jitter)
         print(y.jitter)
+        print(buttonClicked())
         return(data.frame(x.jitter = x.jitter, y.jitter = y.jitter))
       }
     })
@@ -42,33 +43,35 @@ shinyServer(function(input, output) {
     #  2) Its output type is a plot 
     #
     theworld <- function() {
-      buttonClicked()  
       isolate({
         par(mar = rep(0,4))
         map("world2", projection="vandergrinten", wrap=TRUE, 
             resolution=2, mar = rep(0,4),
             bg=rgb(210, 200, 176,alpha=255,maxColorValue = 255))
-      })
-        
-      isolate({
+      })      
+    }
+    
+    user.circle <- function() {
+      if (buttonClicked() > 0) {
         new.noise <- make.noise()
         noisy.coords <- data.frame(x = input$plotclick$x+new.noise$x.jitter,
                                    y = input$plotclick$y+new.noise$y.jitter)
         cur.circ <- circleFun(c(noisy.coords$x,noisy.coords$y),
                               radius=input$radius, npoints = 30)
-          
         polygon(x=cur.circ$x,y=cur.circ$y,
                 col = rainbow(1000,s=0.5,alpha=0.5)[input$circlecolor])
+        
         if("plotclick" %in% names(input)) {
-            text(labels=input$name,x=noisy.coords$x,y=noisy.coords$y,
-                 vfont=c("sans serif","plain"), cex=10*log(input$radius*5))
+          text(labels=input$name,x=noisy.coords$x,y=noisy.coords$y,
+               vfont=c("sans serif","plain"), 
+               cex=10*log(input$radius*5))
         }
-      })
-      
+      }
     }
     
     output$myworld <- renderPlot({
       theworld()
+      user.circle()
     }, height = 640)
 
     output$clickcoord <- renderPrint({

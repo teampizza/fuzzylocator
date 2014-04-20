@@ -29,7 +29,7 @@ shinyUI(pageWithSidebar(
                 max=1000,
                 step=1,
                 value=sample(1:1000,1)),
-    actionButton("paintupdate", "Draw Circle"),
+    actionButton("paintupdate", "Nudge Circle"),
         textInput("name","Nym"),
         textInput("contact","Contact"),
         actionButton("submitinfo","Submit Location + Info"),
