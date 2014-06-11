@@ -3,6 +3,7 @@ library(maps)
 library(mapdata)
 library(rworldmap)
 library(gridExtra)
+library(mapproj)
 source("./mapfuncs.R")
 
 # define global data store for persistent storage
@@ -14,8 +15,9 @@ locationtable <- data.frame(Nym=character(),
 
 set.seed(seed = 646468449*runif(1))
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
     # Reactive dependencies
+    myReact <- reactiveValues()
     buttonClicked <- reactive(input$paintupdate)
     make.noise <- reactive({
       if(buttonClicked() > 0) {
@@ -51,27 +53,40 @@ shinyServer(function(input, output) {
       })      
     }
     
-    user.circle <- function() {
-      if (buttonClicked() > 0) {
-        new.noise <- make.noise()
-        noisy.coords <- data.frame(x = input$plotclick$x+new.noise$x.jitter,
-                                   y = input$plotclick$y+new.noise$y.jitter)
-        cur.circ <- circleFun(c(noisy.coords$x,noisy.coords$y),
+    user.circle <- function(coords,col) {
+        cur.circ <- circleFun(c(coords$x,coords$y),
                               radius=input$radius, npoints = 30)
-        polygon(x=cur.circ$x,y=cur.circ$y,
-                col = rainbow(1000,s=0.5,alpha=0.5)[input$circlecolor])
-        
+        polygon(x= cur.circ$x,
+                y= cur.circ$y,
+                col = col)
+
         if("plotclick" %in% names(input)) {
-          text(labels=input$name,x=noisy.coords$x,y=noisy.coords$y,
+          text(labels=input$name,x=coords$x,y=coords$y,
                vfont=c("sans serif","plain"), 
                cex=10*log(input$radius*5))
         }
-      }
     }
+    observe({
+      if (buttonClicked() > 0) {
+        
+        new.noise <- make.noise()
+        noisy.coords <- data.frame(x = input$plotclick$x+new.noise$x.jitter,
+                                   y = input$plotclick$y+new.noise$y.jitter)
+        
+        myReact$poly <- 
+          c(isolate(myReact$poly), 
+            list(list(coords = noisy.coords,
+            col = 
+              isolate(rainbow(1000,s=0.5,alpha=0.5)[input$circlecolor]))))
+        
+    }
+  })
     
     output$myworld <- renderPlot({
       theworld()
-      user.circle()
+      for (circ.ind in seq_along(myReact$poly)) {
+          do.call(user.circle, myReact$poly[[circ.ind]])
+      }
     }, height = 640)
 
     output$clickcoord <- renderPrint({
