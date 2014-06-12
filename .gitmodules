@@ -4,3 +4,6 @@
 [submodule "Leaflet"]
 	path = Leaflet
 	url = git@github.com:Leaflet/Leaflet.git
+[submodule "leaflet-sidebar"]
+	path = leaflet-sidebar
+	url = git@github.com:Turbo87/leaflet-sidebar.git

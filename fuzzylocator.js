@@ -10,20 +10,20 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 L.control.scale().addTo(map)
 
 // add our menu
-var FuzzyMenu = L.control.extend({
-		options: {
-				position: 'topright'
-		},
+var FuzzyMenu = L.Control.extend({
+    options: {
+	position: 'topright'
+    },
 
-		onAdd: function (map) {
-        // create the control container with a particular class name
+    onAdd: function (map) {
+	// create the control container with a particular class name
         var container = L.DomUtil.create('div', 'fuzzy-menu');
-
+	
         // ... initialize other DOM elements, add listeners, etc.
-				// var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
-
-        this.link = L.DomUtil.create('a', 'leaflet-bar-part', container);
-// var userIcon = L.DomUtil.create('i', 'fa fa-users fa-lg', this.link);
+	// var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+	
+	this.link = L.DomUtil.create('a', 'leaflet-bar-part', container);
+	// var userIcon = L.DomUtil.create('i', 'fa fa-users fa-lg', this.link);
         var userIcon = L.DomUtil.create('img' , 'img-responsive' , this.link);
         userIcon.src = 'https://raw.githubusercontent.com/CliffCloud/Leaflet.LocationShare/master/dist/images/IconLocShare.png'
         this.link.href = '#';
@@ -33,12 +33,15 @@ var FuzzyMenu = L.control.extend({
         return container;
     },
 
-		_click: function (e) {
-      L.DomEvent.stopPropagation(e);
-      L.DomEvent.preventDefault(e);
-// TODO: get location and putout url
-      placeMarker( this._map )
-		}
+    _click: function (e) {
+	L.DomEvent.stopPropagation(e);
+	L.DomEvent.preventDefault(e);
+	
+	placeMarker( this._map )
+    }
 });
 
 map.addControl(new FuzzyMenu());
+this.whenReady( function(){
+    populateMarker(this);
+})
