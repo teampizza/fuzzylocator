@@ -54,3 +54,6 @@ map.on('click', function (e) {
 	alert(e.latlng);
     }
 });
+
+
+// info submit

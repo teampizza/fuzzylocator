@@ -50,31 +50,27 @@
 
     <div class="form">
       <form action="submit_info.asp">
-	<div class="label">Nym:</div> 
 	<div class="field">
-	  <input type="text" name="nym">
+	  Nym: <input type="text" name="nym">
 	</div>
+        <div class="field">
+	  Contact: <input type="text" name="contact">
+	</div>
+	<div class="field">
+	  <input type="submit" value="Submit Location+Info">
+	</div>
+      </form>
     </div>
-    <div class="form">
-      <div class="label">Contact:</div> 
-      <div class="field">
-	<input type="text" name="contact">
-      </div>
-    </div>
-    <div class="form">
-      <input type="submit" value="Submit Location+Info">
-    </div>
-    </form>
-  </div>
-  <button id="mapdl" type="button">Download Map</button>
-  <button id="infodl" type="button">Download Info</button>
+    <button id="mapdl" type="button">Download Map</button>
+    <button id="infodl" type="button">Download Info</button>
 </div>
 
 <script src="./Leaflet/dist/leaflet.js"></script>
 <script src="./leaflet-sidebar/src/L.Control.Sidebar.js"></script>
 <script src="./leaflet-button/L.Control.Button.js"></script>
-
 <script src="./Leaflet.Ellipse/l.ellipse.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <script src="./fuzzylocator.js"></script>
 <!--<script src="./mapfunctions.js"></script>-->
 </body>
