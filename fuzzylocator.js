@@ -16,10 +16,41 @@ var FuzzyMenu = L.control.sidebar('fuzzymenu', {
 });
 map.addControl(FuzzyMenu);
 
-map.on('click', function () {
-            FuzzyMenu.hide();
-})
+menuButton = new L.Control.Button(L.DomUtil.get('menubutton'), { toggleButton: 'active' });
+menuButton.addTo(map);
+menuButton.on('click', function () {
+    if (menuButton.isToggled()) {
+        FuzzyMenu.hide();
+    } else {
+        FuzzyMenu.show();
+    }
+});
+
+// map.on('click', function () {
+//            FuzzyMenu.hide();
+// })
 
 setTimeout(function () {
             FuzzyMenu.show();
 }, 500);
+
+
+// button actions
+// download a map screenshot
+mapdl.onclick=function(){};
+
+// download the posted info list as a TSV
+infodl.onclick=function(){};
+
+// enable drawing
+var circleenabled = false;
+drawcircle.onclick=function() {
+    if (circleenabled == false) { circleenabled = true; }
+    else { circleenabled = false;}
+};
+
+map.on('click', function (e) {
+    if (circleenabled == true) {
+	alert(e.latlng);
+    }
+});
