@@ -1,0 +1,37 @@
+<%= form_for(@infolist) do |f| %>
+  <% if @infolist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@infolist.errors.count, "error") %> prohibited this infolist from being saved:</h2>
+
+      <ul>
+      <% @infolist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nym %><br>
+    <%= f.text_field :nym %>
+  </div>
+  <div class="field">
+    <%= f.label :contact %><br>
+    <%= f.text_field :contact %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.label :long %><br>
+    <%= f.text_field :long %>
+  </div>
+  <div class="field">
+    <%= f.label :radius %><br>
+    <%= f.text_field :radius %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

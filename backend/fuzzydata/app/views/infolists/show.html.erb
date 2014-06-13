@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nym:</strong>
+  <%= @infolist.nym %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @infolist.contact %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @infolist.lat %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @infolist.long %>
+</p>
+
+<p>
+  <strong>Radius:</strong>
+  <%= @infolist.radius %>
+</p>
+
+<%= link_to 'Edit', edit_infolist_path(@infolist) %> |
+<%= link_to 'Back', infolists_path %>

@@ -1,0 +1,35 @@
+<h1>Listing infolists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nym</th>
+      <th>Contact</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th>Radius</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @infolists.each do |infolist| %>
+      <tr>
+        <td><%= infolist.nym %></td>
+        <td><%= infolist.contact %></td>
+        <td><%= infolist.lat %></td>
+        <td><%= infolist.long %></td>
+        <td><%= infolist.radius %></td>
+        <td><%= link_to 'Show', infolist %></td>
+        <td><%= link_to 'Edit', edit_infolist_path(infolist) %></td>
+        <td><%= link_to 'Destroy', infolist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Infolist', new_infolist_path %>
