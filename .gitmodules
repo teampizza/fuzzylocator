@@ -7,3 +7,6 @@
 [submodule "leaflet-sidebar"]
 	path = leaflet-sidebar
 	url = git@github.com:Turbo87/leaflet-sidebar.git
+[submodule "Leaflet.Ellipse"]
+	path = Leaflet.Ellipse
+	url = git@github.com:jdfergason/Leaflet.Ellipse.git
