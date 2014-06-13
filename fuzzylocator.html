@@ -2,16 +2,108 @@
 <html>
   <head>
     <link rel="stylesheet" href="./Leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="./leaflet-sidebar/src/L.Control.Sidebar.css"></>
     <meta charset="utf-8" />
     <title>node / leaflet</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+        }
+
+	.form {
+	    background: #eee;
+	    text-align: justify;
+	}
+	
+	.label { 
+	    display: inline-block;
+	    # float: left;
+	    # margin-left: 0;
+	    *text-align: left;
+	    *display: inline;
+	}
+
+	.field { 
+	    display: inline-block;
+	    # padding: 4px; 
+	    # margin-right: 0;
+	    # margin-left: 5px;
+	    text-align: right;
+	    # background: #eee; 
+	}
+    </style>
+
   </head>
 
   <body>
-    <div id="map" style="width: 600px; height: 400px"></div>
-    
+    <div id="map"></div>
+    <div id="fuzzymenu">
+      <h1>menu</h1>
+      
+      <p>some stuff</p>
+
+      <!-- controls -->
+      <input type="range" min="0" max="100" value="10" step="1" onchange="showValue(this.value)" />
+      <span id="radius">10</span>
+      <script type="text/javascript">
+	function showValue(newValue)
+	{
+	    document.getElementById("radius").innerHTML=newValue;
+	}
+      </script>
+
+      <input type="range" min="0" max="1000" value="100" step="1" onchange="showValue(this.value)" />
+      <span id="jitter">100</span>
+      <script type="text/javascript">
+	function showValue(newValue)
+	{
+	    document.getElementById("jitter").innerHTML=newValue;
+	}
+      </script>
+
+      <input type="range" min="0" max="1000" value="220" step="1" onchange="showValue(this.value)" />
+      <span id="hue">220</span>
+      <script type="text/javascript">
+	function showValue(newValue)
+	{
+	    document.getElementById("hue").innerHTML=newValue;
+	}
+      </script>
+
+      <button type="button">Draw Circle</button>
+
+      <div class="form">
+	<form action="submit_info.asp">
+	  <div class="label">Nym:</div> 
+	  <div class="field">
+	    <input type="text" name="nym">
+	  </div>
+      </div>
+      <div class="form">
+	<div class="label">Contact:</div> 
+	<div class="field">
+	  <input type="text" name="contact">
+	</div>
+      </div>
+      <div class="form">
+	<input type="submit" value="Submit Location+Info">
+      </div>
+      
+    </div>
+    <button type="button">Download Map</button>
+<button type="button">Download Info</button>
+</div>
+
     <script src="./Leaflet/dist/leaflet.js"></script>
-    
+    <script src="./leaflet-sidebar/src/L.Control.Sidebar.js"></script>
+
     <script src="./fuzzylocator.js"></script>
-    <script src="./mapfunctions.js"></script>
+    <!--<script src="./mapfunctions.js"></script>-->
   </body>
 </html>

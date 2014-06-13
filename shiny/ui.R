@@ -58,7 +58,7 @@ shinyUI(pageWithSidebar(
                    )
       ),
       wellPanel(
-        includeMarkdown('./readme.md')
+        includeMarkdown('../readme.md')
       )
   )
 ))
