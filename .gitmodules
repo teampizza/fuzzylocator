@@ -10,3 +10,6 @@
 [submodule "Leaflet.Ellipse"]
 	path = Leaflet.Ellipse
 	url = git@github.com:jdfergason/Leaflet.Ellipse.git
+[submodule "leaflet-button"]
+	path = leaflet-button
+	url = https://github.com/jerroydmoore/leaflet-button.git
