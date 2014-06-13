@@ -69,6 +69,6 @@ class InfolistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def infolist_params
-      params.require(:infolist).permit(:nym, :contact, :lat, :long, :radius)
+      params.require(:infolist).permit(:nonce, :nym, :contact, :lat, :long, :radius)
     end
 end

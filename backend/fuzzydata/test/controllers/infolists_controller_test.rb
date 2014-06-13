@@ -18,7 +18,7 @@ class InfolistsControllerTest < ActionController::TestCase
 
   test "should create infolist" do
     assert_difference('Infolist.count') do
-      post :create, infolist: { contact: @infolist.contact, lat: @infolist.lat, long: @infolist.long, nym: @infolist.nym, radius: @infolist.radius }
+      post :create, infolist: { contact: @infolist.contact, lat: @infolist.lat, long: @infolist.long, nonce: @infolist.nonce, nym: @infolist.nym, radius: @infolist.radius }
     end
 
     assert_redirected_to infolist_path(assigns(:infolist))
@@ -35,7 +35,7 @@ class InfolistsControllerTest < ActionController::TestCase
   end
 
   test "should update infolist" do
-    patch :update, id: @infolist, infolist: { contact: @infolist.contact, lat: @infolist.lat, long: @infolist.long, nym: @infolist.nym, radius: @infolist.radius }
+    patch :update, id: @infolist, infolist: { contact: @infolist.contact, lat: @infolist.lat, long: @infolist.long, nonce: @infolist.nonce, nym: @infolist.nym, radius: @infolist.radius }
     assert_redirected_to infolist_path(assigns(:infolist))
   end
 

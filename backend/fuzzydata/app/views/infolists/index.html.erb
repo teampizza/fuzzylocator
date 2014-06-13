@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Nonce</th>
       <th>Nym</th>
       <th>Contact</th>
       <th>Lat</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @infolists.each do |infolist| %>
       <tr>
+        <td><%= infolist.nonce %></td>
         <td><%= infolist.nym %></td>
         <td><%= infolist.contact %></td>
         <td><%= infolist.lat %></td>

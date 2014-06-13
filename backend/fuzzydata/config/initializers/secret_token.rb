@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Fuzzydata::Application.config.secret_key_base = 'a32b79700f564e5ced62a18cc69492f657780e4c0e69bd996df2ee0179e9720ee7d1afe5be271303a97957d3bf0094c4916d953171ac0c6574efed5204d11ca4'
+Fuzzydata::Application.config.secret_key_base = '3f0730e8bfb34c35a86987b3d877f21920da2b3b1bfc061b99e72e98eab39172a9357c1e798b0a96e56883a397278a74cac87e1c7cd9378b3ee2362fc7c31117'

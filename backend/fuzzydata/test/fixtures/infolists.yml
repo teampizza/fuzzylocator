@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  nonce: MyString
   nym: MyString
   contact: MyString
   lat: 1.5
@@ -8,6 +9,7 @@ one:
   radius: 1.5
 
 two:
+  nonce: MyString
   nym: MyString
   contact: MyString
   lat: 1.5
