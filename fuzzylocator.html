@@ -3,41 +3,10 @@
   <head>
     <link rel="stylesheet" href="./Leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="./leaflet-sidebar/src/L.Control.Sidebar.css"></>
+<link rel="stylesheet" href="./fuzzylocator.css"></>
+
 <meta charset="utf-8" />
 <title>leaflet / fuzzylocator</title>
-
-<style>
-  body {
-  padding: 0;
-  margin: 0;
-  }
-
-  html, body, #map {
-  height: 100%;
-  }
-
-  .form {
-  background: #eee;
-  text-align: justify;
-  }
-  
-  .label { 
-  display: inline-block;
-  # float: left;
-  # margin-left: 0;
-  *text-align: left;
-  *display: inline;
-  }
-
-  .field { 
-  display: inline-block;
-  # padding: 4px; 
-  # margin-right: 0;
-  # margin-left: 5px;
-  text-align: right;
-  # background: #eee; 
-  }
-</style>
 
 </head>
 
@@ -95,7 +64,7 @@
     <div class="form">
       <input type="submit" value="Submit Location+Info">
     </div>
-    
+    </form>
   </div>
   <button id="mapdl" type="button">Download Map</button>
   <button id="infodl" type="button">Download Info</button>
@@ -105,7 +74,7 @@
 <script src="./leaflet-sidebar/src/L.Control.Sidebar.js"></script>
 <script src="./leaflet-button/L.Control.Button.js"></script>
 
-<script src="l.ellipse.min.js"></script>
+<script src="./Leaflet.Ellipse/l.ellipse.min.js"></script>
 <script src="./fuzzylocator.js"></script>
 <!--<script src="./mapfunctions.js"></script>-->
 </body>
