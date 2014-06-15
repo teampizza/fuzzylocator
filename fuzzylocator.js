@@ -51,6 +51,9 @@ drawcircle.onclick=function() {
 
 // draw circles on click
 var mycircle;
+// get info
+
+
 map.on('click', function (e) {
     if (circleenabled == true) {
 	// remove the existing circle if it has already been placed
@@ -65,6 +68,7 @@ map.on('click', function (e) {
 	    fillOpacity: 0.5,
 	    weight: 2
 	});
+	mycircle.bindLabel('A sweet static label!', { noHide: true });
 	mycircle.addTo(map);
     }
 });
