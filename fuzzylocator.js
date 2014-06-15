@@ -49,11 +49,30 @@ drawcircle.onclick=function() {
     else { circleenabled = false;}
 };
 
+// draw circles on click
+var mycircle;
 map.on('click', function (e) {
     if (circleenabled == true) {
-	alert(e.latlng);
+	// remove the existing circle if it has already been placed
+	if (mycircle != undefined) {
+	    map.removeLayer(mycircle);
+	};
+
+	var currenthue = rainbow(hueslider.value);
+	mycircle = L.circle(e.latlng, radius.value, {
+	    color: currenthue,
+	    fillColor: currenthue,
+	    fillOpacity: 0.5,
+	    weight: 2
+	});
+	mycircle.addTo(map);
     }
 });
 
+// make color from slider
+function rainbow(n) {
+    n = n * 240 / 255;
+    return 'hsl(' + n + ',100%,50%)';
+}
 
 // info submit

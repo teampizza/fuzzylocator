@@ -19,12 +19,12 @@
 
     <!-- controls -->
     <button id="menubutton" role="button" class="btn btn-primary">menu</button>
-    <input type="range" min="0" max="100" value="10" step="1" onchange="showValue(this.value)" />
-    <span id="radius">10</span>
+    <input id="radius" type="range" min="100" max="6000000" value="100000" step="100" onchange="showValue(this.value)" />
+    <span id="radiusdisp">100000</span>
     <script type="text/javascript">
       function showValue(newValue)
       {
-      document.getElementById("radius").innerHTML=newValue;
+      document.getElementById("radiusdisp").innerHTML=newValue;
       }
     </script>
 
@@ -37,12 +37,12 @@
       }
     </script>
 
-    <input type="range" min="0" max="1000" value="220" step="1" onchange="showValue(this.value)" />
-    <span id="hue">220</span>
+    <input id="hueslider" type="range" min="0" max="255" value="100" step="1" onchange="showValue(this.value)" />
+    <span id="huesliderdisp">100</span>
     <script type="text/javascript">
       function showValue(newValue)
       {
-      document.getElementById("hue").innerHTML=newValue;
+      document.getElementById("huesliderdisp").innerHTML=newValue;
       }
     </script>
 
@@ -68,7 +68,7 @@
 <script src="./Leaflet/dist/leaflet.js"></script>
 <script src="./leaflet-sidebar/src/L.Control.Sidebar.js"></script>
 <script src="./leaflet-button/L.Control.Button.js"></script>
-<script src="./Leaflet.Ellipse/l.ellipse.min.js"></script>
+<!-- <script src="./Leaflet.Ellipse/l.ellipse.js"></script>-->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script src="./fuzzylocator.js"></script>
