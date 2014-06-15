@@ -13,3 +13,6 @@
 [submodule "leaflet-button"]
 	path = leaflet-button
 	url = https://github.com/jerroydmoore/leaflet-button.git
+[submodule "Leaflet.label"]
+	path = Leaflet.label
+	url = https://github.com/Leaflet/Leaflet.label.git
