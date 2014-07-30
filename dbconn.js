@@ -64,8 +64,19 @@ database.transaction(
 // asynchronously by default (it seems), we have to provide
 // callbacks to execute when the results are available.
  
- 
-var saveEntry = function( name, callback ){
+var submitEntry = function() {
+		// submit the five entry items:
+		// nym, contact, lat, long (of circle), radius
+		// get from html
+		mynym = document.getElementById("nym").value;
+		mycontact = document.getElementById("contact").value;
+		mylat = latlng.lat;
+		mylng = latlng.lng;
+		myrad = document.getElementById("radius").value;
+		saveEntry(mynym,mycontact,mylat,mylng,myrad);
+}
+
+var saveEntry = function( nym, contact, lat, lng, radius, callback ){
 		// Insert a new entry.
 		database.transaction(
 				function( transaction ){
@@ -80,7 +91,7 @@ var saveEntry = function( name, callback ){
 												");"
 								),
 								[
-										nonce, nym, contact, lat, longi, radius
+										nonce, nym, contact, lat, lng, radius
 								],
 								function( transaction, results ){
 										// Execute the success callback,
