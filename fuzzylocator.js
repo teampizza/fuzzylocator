@@ -56,20 +56,23 @@ var mycircle;
 
 map.on('click', function (e) {
     if (circleenabled == true) {
-	// remove the existing circle if it has already been placed
-	if (mycircle != undefined) {
-	    map.removeLayer(mycircle);
-	};
+				// remove the existing circle if it has already been placed
+				if (mycircle != undefined) {
+						map.removeLayer(mycircle);
+				};
 
-	var currenthue = rainbow(hueslider.value);
-	mycircle = L.circle(e.latlng, radius.value, {
-	    color: currenthue,
-	    fillColor: currenthue,
-	    fillOpacity: 0.5,
-	    weight: 2
-	});
-	mycircle.bindLabel('A sweet static label!', { noHide: true });
-	mycircle.addTo(map);
+				// export the latlng data to the window for other funcs
+				window.latlng = e.latlng;
+
+				var currenthue = rainbow(hueslider.value);
+				mycircle = L.circle(e.latlng, radius.value, {
+						color: currenthue,
+						fillColor: currenthue,
+						fillOpacity: 0.5,
+						weight: 2
+				});
+				mycircle.bindLabel(document.getElementById("nym").value)
+				.addTo(map);
     }
 });
 
