@@ -14,54 +14,54 @@
 <body>
   <div id="map"></div>
   <div id="fuzzymenu">
-    <h1>menu</h1>
+    <h1>share info</h1>
     
-    <p>some stuff</p>
+    <p><strong>location options</strong></p>
 
     <!-- controls -->
     <button id="menubutton" role="button" class="btn btn-primary">menu</button>
-    <input id="radius" type="range" min="100" max="6000000" value="100000" step="100" onchange="showValue(this.value)" />
+    radius:<br>
+		<input id="radius" type="range" min="100" max="6000000" value="100000" step="100" onchange="showValue(this.value)" />
     <span id="radiusdisp">100000</span>
     <script type="text/javascript">
       function showValue(newValue)
       {
       document.getElementById("radiusdisp").innerHTML=newValue;
       }
-    </script>
+    </script><br>
 
-    <input type="range" min="0" max="1000" value="100" step="1" onchange="showValue(this.value)" />
+    jitter<br>
+		<input type="range" min="0" max="1000" value="100" step="1" onchange="showValue(this.value)" />
     <span id="jitter">100</span>
     <script type="text/javascript">
       function showValue(newValue)
       {
       document.getElementById("jitter").innerHTML=newValue;
       }
-    </script>
+    </script><br>
 
-    <input id="hueslider" type="range" min="0" max="255" value="100" step="1" onchange="showValue(this.value)" />
+    color<br>
+		<input id="hueslider" type="range" min="0" max="255" value="100" step="1" onchange="showValue(this.value)" />
     <span id="huesliderdisp">100</span>
     <script type="text/javascript">
       function showValue(newValue)
       {
       document.getElementById("huesliderdisp").innerHTML=newValue;
       }
-    </script>
+    </script><br>
 
     <button id="drawcircle" type="button">Draw Circle</button>
 
+		<p><strong>contact info</strong></p>
     <div class="form">
-      <form action="">
-	<div class="field">
-	  Nym: <input type="text" name="nym">
-	</div>
-        <div class="field">
-	  Contact: <input type="text" name="contact">
-	</div>
-	<div class="field">
-	  <input type="submit" value="Submit Location+Info">
-	</div>
-      </form>
+      <form action="", OnSubmit="submitEntry();", method="post">
+				Nym: <input type="text" name="nym"><br>
+			  Contact: <input type="text" name="contact"><br>
+				<input type="submit" value="Submit Location+Info"><br>
+		  </form>
     </div>
+
+		<p><strong>export</strong></p>
     <button id="mapdl" type="button">Download Map</button>
     <button id="infodl" type="button">Download Info</button>
 </div>
