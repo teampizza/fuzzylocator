@@ -1,3 +1,5 @@
+///// Leaflet map stuff /////
+//
 // Create a map in the div #map
 var map = L.map('map').setView([21.30694, 157.85833], 2);
 
@@ -26,10 +28,7 @@ menuButton.on('click', function () {
     }
 });
 
-// map.on('click', function () {
-//            FuzzyMenu.hide();
-// })
-
+// display menu on load
 setTimeout(function () {
             FuzzyMenu.show();
 }, 500);
@@ -37,7 +36,19 @@ setTimeout(function () {
 
 // button actions
 // download a map screenshot
-mapdl.onclick=function(){};
+document.getElementById("mapdl").addEventListener("click", function(){
+		leafletImage(map, doImage);
+});
+
+function doImage(err, canvas) {
+    var img = document.createElement('img');
+    var dimensions = map.getSize();
+    img.width = dimensions.x;
+    img.height = dimensions.y;
+    img.src = canvas.toDataURL();
+    snapshot.innerHTML = '';
+    snapshot.appendChild(img);
+}
 
 // download the posted info list as a TSV
 infodl.onclick=function(){};
