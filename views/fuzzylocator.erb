@@ -17,35 +17,42 @@
     <h1>share info</h1>
     
     <p><strong>location options</strong></p>
-
+		
     <!-- controls -->
-    <button id="menubutton" role="button" class="btn btn-primary">menu</button>
-    radius<br>
-		<div>
-			<input id="radius" type="range" min="100" max="6000000" value="100000" step="100"/>
-		</div>
+		<button id="menubutton" role="button" class="btn btn-primary">menu</button>
 
-    jitter<br>
-		<div>
-			<input id="jitter" type="range" min="0" max="1000" value="100" step="1"/>
-		</div>
-    
-
-    color<br>
-		<div>
-		<input id="hueslider" type="range" min="0" max="255" value="100" step="1"/>
-		</div>
-
-    <button id="drawcircle" type="button">Draw Circle</button>
-
-		<p><strong>contact info</strong></p>
-    <div class="form">
-      <form action="/submit", method="post">
+		<form action="/submit", method="post">
+			
+			radius<br>
+			
+			<div>
+				<input name="radius" id="radius" type="range" min="100" max="6000000" value="100000" step="100"/>
+			</div>
+			
+			jitter<br>
+			
+			<div>
+				<input name="jitter" id="jitter" type="range" min="0" max="1000" value="100" step="1"/>
+			</div>
+			
+			
+			color<br>
+			
+			<div>
+				<input id="hueslider" type="range" min="0" max="255" value="100" step="1"/>
+			</div>
+			
+			<button id="drawcircle" type="button">Draw Circle</button>
+			
+			<p><strong>contact info</strong></p>
+			
+			<div class="form">
 				Nym: <input type="text" name="nym" id="nym"><br>
-			  Contact: <input type="text" name="contact" id="contact"><br>
+				Contact: <input type="text" name="contact" id="contact"><br>
 				<input type="submit" value="Submit Location+Info"><br>
-		  </form>
-    </div>
+			</div>
+			
+		</form>
 
 		<p><strong>export</strong></p>
     <button id="mapdl" type="button">Download Map</button>
