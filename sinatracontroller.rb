@@ -2,6 +2,7 @@ require 'sinatra'
 require 'mongo'
 require 'json/ext'
 
+# http://code.tutsplus.com/tutorials/singing-with-sinatra--net-18965
 set :public_folder, 'public'
 
 # mongo code from the sinatra recipe book
@@ -14,15 +15,52 @@ configure do
   set :mongo_db, conn.db('testdb')
 end
 
+# view page
 get '/' do
   erb :fuzzylocator
 end
 
-post 'submit' do
-  
+##### DB stuff #####
+## insert entry
+# insert a new document from the request parameters,
+# then return the full document
+post '/submit' do
+  content_type :json
+  new_id = settings.mongo_db['test'].insert params
+  document_by_id(new_id)
 end
 
-# what does this do?
+
+## retrieve entries
+# list all documents in the test collection
+get '/documents/?' do
+  content_type :json
+  settings.mongo_db['test'].find.to_a.to_json
+end
+
+# find a document by its ID
+get '/document/:id/?' do
+  content_type :json
+  document_by_id(params[:id])
+end
+
+
+## delete entries
+# delete the specified document and return success
+delete '/remove/:id' do
+  content_type :json
+  db = settings.mongo_db['test']
+  id = object_id(params[:id])
+  if db.find_one(id)
+    db.remove(:_id => id)
+    {:success => true}.to_json
+  else
+    {:success => false}.to_json
+  end
+end
+
+
+## overall view
 get '/collections/?' do
   content_type :json
   settings.mongo_db.collection_names.to_json
