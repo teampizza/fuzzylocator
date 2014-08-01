@@ -27,4 +27,4 @@
 	url = https://github.com/Leaflet/Leaflet.label.git
 [submodule "public/js/leaflet-sidebar"]
 	path = public/js/leaflet-sidebar
-	url = https://github.com/Turbo87/leaflet-sidebar.git
+	url = git@github.com:Turbo87/leaflet-sidebar.git
