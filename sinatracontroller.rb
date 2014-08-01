@@ -36,10 +36,12 @@ end
 
 ## retrieve entries
 # download a list of all documents in the collection
-get '/list/?' do
+post '/list' do
   content_type 'text/csv'
 
   csv_string = CSV.generate do |csv|
+    csv << header # stick our known header on first
+    # then iterate over each row
     JSON.parse(settings.mongo_db['test'].find.to_a.to_json).each do |entry|
       csv << entry.values
     end

@@ -50,12 +50,6 @@ function doImage(err, canvas) {
     snapshot.appendChild(img);
 }
 
-// download the posted info list as a TSV
-document.getElementById("infodl").addEventListener("click", function(){
-
-
-});
-
 // enable drawing
 var circleenabled = false;
 drawcircle.onclick=function() {
