@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'mongo'
 require 'json/ext'
+require 'csv'
 
 # http://code.tutsplus.com/tutorials/singing-with-sinatra--net-18965
 set :public_folder, 'public'
@@ -21,6 +22,8 @@ get '/' do
 end
 
 ##### DB stuff #####
+header = ["_id", "radius", "jitter", "nym", "contact"]
+
 ## insert entry
 # insert a new document from the request parameters,
 # then return the full document
@@ -32,10 +35,17 @@ end
 
 
 ## retrieve entries
-# list all documents in the test collection
-get '/documents/?' do
-  content_type :json
-  settings.mongo_db['test'].find.to_a.to_json
+# download a list of all documents in the collection
+get '/list/?' do
+  content_type 'text/csv'
+
+  csv_string = CSV.generate do |csv|
+    JSON.parse(settings.mongo_db['test'].find.to_a.to_json).each do |entry|
+      csv << entry.values
+    end
+  end
+
+  csv_string #, :filename=> 'list.csv', :type=> 'text/csv'
 end
 
 # find a document by its ID
