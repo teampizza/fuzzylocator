@@ -30,7 +30,7 @@ menuButton.on('click', function () {
 
 // display menu on load
 setTimeout(function () {
-            FuzzyMenu.show();
+    FuzzyMenu.show();
 }, 500);
 
 
@@ -51,7 +51,10 @@ function doImage(err, canvas) {
 }
 
 // download the posted info list as a TSV
-infodl.onclick=function(){};
+document.getElementById("infodl").addEventListener("click", function(){
+
+
+});
 
 // enable drawing
 var circleenabled = false;
@@ -71,10 +74,10 @@ map.on('click', function (e) {
 				if (mycircle != undefined) {
 						map.removeLayer(mycircle);
 				};
-
+				
 				// export the latlng data to the window for other funcs
 				window.latlng = e.latlng;
-
+				
 				var currenthue = rainbow(hueslider.value);
 				mycircle = L.circle(e.latlng, radius.value, {
 						color: currenthue,
@@ -83,7 +86,7 @@ map.on('click', function (e) {
 						weight: 2
 				});
 				mycircle.bindLabel(document.getElementById("nym").value)
-				.addTo(map);
+						.addTo(map);
     }
 });
 
