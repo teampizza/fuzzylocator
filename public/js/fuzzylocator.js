@@ -28,6 +28,17 @@ menuButton.on('click', function () {
     }
 });
 
+// button to display right list sidebar
+listButton = new L.Control.Button(L.DomUtil.get('listbutton'), { toggleButton: 'active' });
+listButton.addTo(map);
+listButton.on('click', function () {
+    if (menuButton.isToggled()) {
+        FuzzyList.hide();
+    } else {
+        FuzzyList.show();
+    }
+});
+
 // display menu on load
 setTimeout(function () {
     FuzzyMenu.show();

@@ -2,6 +2,7 @@ require 'sinatra'
 require 'mongo'
 require 'json/ext'
 require 'csv'
+require 'builder'
 
 # http://code.tutsplus.com/tutorials/singing-with-sinatra--net-18965
 set :public_folder, 'public'
@@ -50,6 +51,12 @@ post '/list' do
   csv_string #, :filename=> 'list.csv', :type=> 'text/csv'
 end
 
+# print all documents as json
+get '/documents' do
+  content_type :json
+  settings.mongo_db['test'].find.to_a.to_json
+end
+
 # find a document by its ID
 get '/document/:id/?' do
   content_type :json
@@ -92,3 +99,21 @@ helpers do
   end
 end
 
+
+## making tables from hashes for easy display
+# http://stackoverflow.com/questions/2634024/generate-an-html-table-from-an-array-of-hashes-in-ruby
+
+def hasharray_to_html( hashArray )
+  # collect all hash keys, even if they don't appear in each hash
+  # use array union to find all unique headers/keys
+  headers = hashArray.inject([]){|a,x| a |= x.keys ; a}
+
+  html = Builder::XmlMarkup.new(:indent => 2)
+  html.table {
+    html.tr { headers.each{|h| html.th(h)} }
+    hashArray.each do |row|
+      html.tr { row.values.each { |value| html.td(value) }}
+    end
+  }
+  return html
+end

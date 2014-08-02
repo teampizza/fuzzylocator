@@ -6,12 +6,32 @@
     <link rel="stylesheet" href="fuzzylocator.css"></>
     <link rel="stylesheet" href="/js/Leaflet.label/dist/leaflet.label.css"></>
 
+    <!-- <script src="./Leaflet/dist/leaflet.js"></script> -->
+    <script src="/js/Leaflet.label/libs/leaflet/leaflet-src.js"></script>
+
+    <script src="/js/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
+
+    <script src="/js/leaflet-button/L.Control.Button.js"></script>
+    
+    <script src="/js/Leaflet.label/src/Label.js"></script>
+    <script src="/js/Leaflet.label/src/BaseMarkerMethods.js"></script>
+    <script src="/js/Leaflet.label/src/Marker.Label.js"></script>
+    <script src="/js/Leaflet.label/src/CircleMarker.Label.js"></script>
+    <script src="/js/Leaflet.label/src/Path.Label.js"></script>
+    <script src="/js/Leaflet.label/src/Map.Label.js"></script>
+    <script src="/js/Leaflet.label/src/FeatureGroup.Label.js"></script>
+
+    <script src="/js/leaflet-image.js"></script>
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+
     <meta charset="utf-8" />
     <title>leaflet / fuzzylocator</title>
 
   </head>
 
 <body>
+
   <div id="map"></div>
   <div id="fuzzymenu">
     <h1>share info</h1>
@@ -20,13 +40,14 @@
 		
     <!-- controls -->
 		<button id="menubutton" role="button" class="btn btn-primary">menu</button>
+		<button id="listbutton" role="button" class="btn btn-primary">share list</button>
 
 		<form action="/submit", method="post">
 			
 			radius<br>
 			
 			<div>
-				<input name="radius" id="radius" type="range" min="100" max="6000000" value="100000" step="100"/>
+				<input name="radius" id="radius" type="range" min="100" max="6000000" value="100000" step="100"/> <!-- TODO make logarithmic -->
 			</div>
 			
 			jitter<br>
@@ -47,8 +68,8 @@
 			<p><strong>contact info</strong></p>
 			
 			<div class="form">
-				Nym: <input type="text" name="nym" id="nym"><br>
-				Contact: <input type="text" name="contact" id="contact"><br>
+				Nym: <input type="text" name="nym" id="nym" required><br>
+				Contact: <input type="text" name="contact" id="contact" required><br>
 				<input type="submit" value="Submit Location+Info"><br>
 			</div>
 			
@@ -59,27 +80,24 @@
     <form action="/list", method="post">
 			<button id="infodl" name="infodl" type="submit">Download Info</button>
 		</form>
-</div>
+	</div>
 
-<!--<script src="./Leaflet/dist/leaflet.js"></script>-->
-<script src="/js/Leaflet.label/libs/leaflet/leaflet-src.js"></script>
-<script src="/js/leaflet-sidebar/src/L.Control.Sidebar.js"></script>
-<script src="/js/leaflet-button/L.Control.Button.js"></script>
+	<div id="fuzzylist">
+
+		<h1>shared list</h1>
+
+		<!-- parse the existing JSON table and spit out a nice HTML table -->
+		<%= hasharray_to_html(JSON.parse(settings.mongo_db['test'].find.to_a.to_json)) %>
+	</div>
 
 
-<script src="/js/Leaflet.label/src/Label.js"></script>
-<script src="/js/Leaflet.label/src/BaseMarkerMethods.js"></script>
-<script src="/js/Leaflet.label/src/Marker.Label.js"></script>
-<script src="/js/Leaflet.label/src/CircleMarker.Label.js"></script>
-<script src="/js/Leaflet.label/src/Path.Label.js"></script>
-<script src="/js/Leaflet.label/src/Map.Label.js"></script>
-<script src="/js/Leaflet.label/src/FeatureGroup.Label.js"></script>
 
-<script src="/js/leaflet-image.js"></script>
 
-<script src="/js/jquery-2.1.1.min.js"></script>
 
 <script src="/js/fuzzylocator.js"></script>
-<!--<script src="./mapfunctions.js"></script>-->
+<script src="/js/fuzzydatadisp.js"></script>
+
+
+
 </body>
 </html>
