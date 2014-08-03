@@ -33,6 +33,8 @@
 <body>
 
   <div id="map"></div>
+
+	<!-- first side pane with map drawing controls -->
   <div id="fuzzymenu">
     <h1>share info</h1>
     
@@ -80,25 +82,28 @@
 
 		<p><strong>export</strong></p>
     <button id="mapdl" type="button">Download Map</button>
-    <form action="/list", method="post">
+    <form action="/csvlist", method="post">
 			<button id="infodl" name="infodl" type="submit">Download Info</button>
 		</form>
 	</div>
 
+	<!-- second side pane which displays list info -->
 	<div id="fuzzylist">
 
 		<h1>shared list</h1>
-
-		<!-- parse the existing JSON table and spit out a nice HTML table -->
-		<%= hasharray_to_html(JSON.parse(settings.mongo_db['test'].find.to_a.to_json)) %>
+		
+		<div id="listpane">
+			<!-- is populated by JS -->
+			
+		</div>
 	</div>
 
 
 
 
 
-<script src="/js/fuzzylocator.js"></script>
-<script src="/js/fuzzydatadisp.js"></script>
+	<script src="/js/fuzzylocator.js"></script>
+	<script src="/js/fuzzydatadisp.js"></script>
 
 
 

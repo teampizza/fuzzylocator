@@ -26,18 +26,18 @@ end
 header = ["_id", "radius", "lat", "lng" , "nym", "contact"]
 
 ## insert entry
-# insert a new document from the request parameters,
-# then return the full document
+# insert a new document from the request parameters
+# (then return the document--commented out for debug)
 post '/submit' do
   content_type :json
   new_id = settings.mongo_db['test'].insert params
-  document_by_id(new_id)
+  # document_by_id(new_id)
 end
 
 
 ## retrieve entries
 # download a list of all documents in the collection
-post '/list' do
+post '/csvlist' do
   content_type 'text/csv'
 
   csv_string = CSV.generate do |csv|
@@ -49,6 +49,13 @@ post '/list' do
   end
 
   csv_string #, :filename=> 'list.csv', :type=> 'text/csv'
+end
+
+# get a small HTML list of all documents
+get '/list' do
+  content_type :html
+  
+  hasharray_to_html(JSON.parse(settings.mongo_db['test'].find.to_a.to_json))
 end
 
 # print all documents as json
