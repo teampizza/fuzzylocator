@@ -81,10 +81,10 @@ map.on('click', function (e) {
 				};
 				
 				// export the latlng data to the window for other funcs
-				window.latlng = e.latlng;
+				window.latlng = fuzzyinput(e.latlng);
 				
 				var currenthue = rainbow(hueslider.value);
-				mycircle = L.circle(e.latlng, radius.value, {
+				mycircle = L.circle(window.latlng, radius, {
 						color: currenthue,
 						fillColor: currenthue,
 						fillOpacity: 0.5,
@@ -101,4 +101,41 @@ function rainbow(n) {
     return 'hsl(' + n + ',100%,50%)';
 }
 
-// info submit
+// randomize lat/lng input
+function fuzzyinput(latlng) {
+		latsign = Math.sign(Math.random()-0.5);
+		lngsign = Math.sign(Math.random()-0.5);
+
+		jitter = document.getElementById("jitter").value;
+		radius = document.getElementById("radius").value;
+
+		latjitter = latsign*Math.min(randomExponential(1/jitter), radius)*Math.sqrt(2)/2;
+		lngjitter = lngsign*Math.min(randomExponential(1/jitter),radius)*Math.sqrt(2)/2;
+
+		console.log(latlng);
+
+		console.log(latjitter);
+		console.log(lngjitter);
+
+		fuzzyLatLng = L.latLng(latlng.lat+latjitter,latlng.lng+lngjitter);
+		
+		console.log(fuzzyLatLng);
+
+		return fuzzyLatLng;
+}
+
+// make random exponential numbers
+// Exponential random number generator
+// Time until next arrival
+function randomExponential(rate, randomUniform) {
+		// http://en.wikipedia.org/wiki/Exponential_distribution#Generating_exponential_variates
+		rate = rate || 1;
+		
+		// Allow to pass a random uniform value or function
+		// Default to Math.random()
+		var U = randomUniform;
+		if (typeof randomUniform === 'function') U = randomUniform();
+		if (!U) U = Math.random();
+		
+		return -Math.log(U)/rate;
+}
