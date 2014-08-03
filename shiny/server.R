@@ -19,6 +19,7 @@ shinyServer(function(input, output, session) {
     # Reactive dependencies
     myReact <- reactiveValues()
     buttonClicked <- reactive(input$paintupdate)
+
     make.noise <- reactive({
       if(buttonClicked() > 0) {
         # Every time the update button is clicked, we draw another noise pair

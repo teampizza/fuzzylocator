@@ -53,7 +53,7 @@
 			jitter<br>
 			
 			<div>
-				<input name="jitter" id="jitter" type="range" min="0" max="1000" value="100" step="1"/>
+				<input id="jitter" type="range" min="0" max="1000" value="100" step="1"/>
 			</div>
 			
 			
@@ -68,6 +68,9 @@
 			<p><strong>contact info</strong></p>
 			
 			<div class="form">
+				<input type="hidden" id="formlat" name="lat">
+				<input type="hidden" id="formlng" name="lng">
+				
 				Nym: <input type="text" name="nym" id="nym" required><br>
 				Contact: <input type="text" name="contact" id="contact" required><br>
 				<input type="submit" value="Submit Location+Info"><br>

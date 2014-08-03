@@ -23,7 +23,7 @@ get '/' do
 end
 
 ##### DB stuff #####
-header = ["_id", "radius", "jitter", "nym", "contact"]
+header = ["_id", "radius", "lat", "lng" , "nym", "contact"]
 
 ## insert entry
 # insert a new document from the request parameters,

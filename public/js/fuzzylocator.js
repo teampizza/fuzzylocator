@@ -93,6 +93,10 @@ map.on('click', function (e) {
 				mycircle.bindLabel(document.getElementById("nym").value)
 						.addTo(map);
     }
+
+		// add to form for submission
+		document.getElementById("formlat").value = window.latlng.lat;
+		document.getElementById("formlng").value = window.latlng.lng;
 });
 
 // make color from slider
@@ -108,18 +112,33 @@ function fuzzyinput(latlng) {
 
 		jitter = document.getElementById("jitter").value;
 		radius = document.getElementById("radius").value;
-
-		latjitter = latsign*Math.min(randomExponential(1/jitter), radius)*Math.sqrt(2)/2;
-		lngjitter = lngsign*Math.min(randomExponential(1/jitter),radius)*Math.sqrt(2)/2;
-
-		console.log(latlng);
-
-		console.log(latjitter);
-		console.log(lngjitter);
-
-		fuzzyLatLng = L.latLng(latlng.lat+latjitter,latlng.lng+lngjitter);
 		
-		console.log(fuzzyLatLng);
+		// console.log("radius: ", radius);
+
+		// generate jitter for lat/long, without exceeding the maximum distance of
+		// radius meters from the point
+		offset = distFromLatLng(latlng, radius);
+		
+		// console.log("offset: ", offset);
+
+		latjitter = latsign*Math.min(randomExponential(1/jitter), offset.lat)*Math.sqrt(2)/2;
+		lngjitter = lngsign*Math.min(randomExponential(1/jitter), offset.lng)*Math.sqrt(2)/2;
+
+		// change to pure pixel domain so that units match
+		// circpoint = map.latLngToContainerPoint(latlng);
+    // circpoint.x = circpoint.x + latjitter;
+		// circpoint.y = circpoint.y + lngjitter;
+		// 
+		// console.log(circpoint);
+		// console.log(L.point(latjitter,lngjitter));
+    
+		// console.log(Math.sqrt(Math.pow(latjitter,2)+Math.pow(lngjitter,2)));
+
+		// fuzzyLatLng = map.containerPointToLatLng(circpoint);
+		fuzzyLatLng = {lat: latlng.lat+latjitter, lng: latlng.lng+lngjitter};
+
+		// console.log("orig: ", latlng);
+		// console.log("new: ", fuzzyLatLng);
 
 		return fuzzyLatLng;
 }
@@ -138,4 +157,21 @@ function randomExponential(rate, randomUniform) {
 		if (!U) U = Math.random();
 		
 		return -Math.log(U)/rate;
+}
+
+
+function distFromLatLng(latlng, meters) {
+		// computes lat/long offset from given meter offset.
+		// earthR = 6378137;
+		// 
+		// latoffset = meters/earthR;
+		// lngoffset = meters/(earthR*Math.cos(Math.PI*latlng.lat/180));
+
+		latoffset = meters/111111;
+		lngoffset = meters/(111111)*Math.cos(latlng.lat);
+
+		offset = {lat: latoffset, lng: lngoffset};
+
+		return offset;
+
 }
