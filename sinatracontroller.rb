@@ -55,7 +55,18 @@ end
 get '/list' do
   content_type :html
   
-  hasharray_to_html(JSON.parse(settings.mongo_db['testdb'].find.to_a.to_json))
+  myhash = JSON.parse(settings.mongo_db['testdb'].find.to_a.to_json)
+  myhash.each do |hash|
+    # drop items irrelevant for presentation
+    hash.delete "_id"
+    hash.delete "color"
+
+    # round off long decimals
+    hash['lat'] = hash['lat'].to_f.round(4)
+    hash['lng'] = hash['lng'].to_f.round(4)
+  end
+
+  hasharray_to_html(myhash)
 end
 
 # print all documents as json
