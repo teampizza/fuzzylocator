@@ -98,11 +98,15 @@ map.on('click', function (e) {
 				// make circle deletable (closure for scope)
 				(function (mycircle) {
 						mycircle.addEventListener( 'click', function () {
+								
 								if (circledelete == true) {
 										var delok = confirm("Delete this entry? This will also delete the submitted record!");
 										if (delok == true) {
 												map.removeLayer(mycircle);
-												// TODO send delete command to database
+												// get lat/lng of circle to do db lookup and delete
+												var rmlatlng = mycircle.getLatLng();
+												// make a form quickly to submit the coords to delete route
+												post_to_url("/remove/",[rmlatlng.lat, rmlatlng.lng]);
 										}
 								}
 						});
@@ -166,4 +170,22 @@ function distFromLatLng(latlng, meters) {
 
 		return offset;
 
+}
+
+function post_to_url(url, params) {
+    var postform = document.createElement('form');
+    postform.action = url;
+    postform.method = 'POST';
+
+    for (var i in params) {
+        if (params.hasOwnProperty(i)) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = i;
+            input.value = params[i];
+            postform.appendChild(input);
+        }
+    }
+
+    postform.submit();
 }

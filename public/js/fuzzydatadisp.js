@@ -58,8 +58,11 @@ setTimeout(function () {
 										if (circledelete == true) {
 												var delok = confirm("Delete this entry? This is permanent!");
 												if (delok == true) {
-										map.removeLayer(thiscircle);
-														// TODO send delete command to database
+														map.removeLayer(thiscircle);
+														// get lat/lng of circle to do db lookup and delete
+														var rmlatlng = mycircle.getLatLng();
+														// make a form quickly to submit the coords to delete route
+														post_to_url("/remove/",[rmlatlng.lat, rmlatlng.lng]);
 												}
 										}
 								});
