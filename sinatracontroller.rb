@@ -25,13 +25,16 @@ end
 ##### DB stuff #####
 header = ["_id", "color", "radius", "lat", "lng" , "nym", "contact"]
 
-## insert entry
+## insert entry (submit info)
 # insert a new document from the request parameters
 # (then return the document--commented out for debug)
-post '/submit' do
-  content_type :json
+post '/' do
+  content_type :html
   new_id = settings.mongo_db['testdb'].insert params
   # document_by_id(new_id)
+
+  # reload page for now
+  erb :fuzzylocator
 end
 
 
