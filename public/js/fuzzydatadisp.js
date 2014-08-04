@@ -51,6 +51,19 @@ setTimeout(function () {
 		
 						// add to map
 						thiscircle.bindLabel(thisnym).addTo(map);
+
+						// make circle deletable with closure for scope
+						(function (thiscircle) {
+								thiscircle.addEventListener('click', function () {
+										if (circledelete == true) {
+												var delok = confirm("Delete this entry? This is permanent!");
+												if (delok == true) {
+										map.removeLayer(thiscircle);
+														// TODO send delete command to database
+												}
+										}
+								});
+						})(thiscircle);
 				}
 		}
 }, 600);

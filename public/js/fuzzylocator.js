@@ -52,17 +52,26 @@ function doImage(err, canvas) {
 
 // enable drawing
 var circleenabled = false;
-drawcircle.onclick=function() {
+drawcircle.onclick = function () {
     if (circleenabled == false) { circleenabled = true; }
     else { circleenabled = false;}
 };
 
+// enable deleting
+var circledelete = false;
+delcircle.onclick = function () {
+    if (circledelete == false) { circledelete = true; }
+    else { circledelete = false;}
+};
+
 // draw circles on click
-var mycircle;
+var mycircle; // TODO is this necessary?
 // get info
 
 
 map.on('click', function (e) {
+
+		// for adding circles
     if (circleenabled == true) {
 				// remove the existing circle if it has already been placed
 				if (mycircle != undefined) {
@@ -81,11 +90,24 @@ map.on('click', function (e) {
 				});
 				mycircle.bindLabel(document.getElementById("nym").value)
 						.addTo(map);
-    }
 
-		// add to form for submission
-		document.getElementById("formlat").value = window.latlng.lat;
-		document.getElementById("formlng").value = window.latlng.lng;
+				// add to form for submission
+				document.getElementById("formlat").value = window.latlng.lat;
+				document.getElementById("formlng").value = window.latlng.lng;
+
+				// make circle deletable (closure for scope)
+				(function (mycircle) {
+						mycircle.addEventListener( 'click', function () {
+								if (circledelete == true) {
+										var delok = confirm("Delete this entry? This will also delete the submitted record!");
+										if (delok == true) {
+												map.removeLayer(mycircle);
+												// TODO send delete command to database
+										}
+								}
+						});
+				})(mycircle);
+		}														 
 });
 
 // make color from slider
