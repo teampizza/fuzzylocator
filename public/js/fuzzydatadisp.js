@@ -32,18 +32,19 @@ setTimeout(function () {
 				if (mydata[i].hasOwnProperty("nym") &&
 						mydata[i].hasOwnProperty("lat") &&
 						mydata[i].hasOwnProperty("lng") &&
-						mydata[i].hasOwnProperty("radius")) {
+						mydata[i].hasOwnProperty("radius") &&
+					  mydata[i].hasOwnProperty("color")) {
 						// extract circles, props (TODO add color to submit)
 			
 						thislatlng = L.latLng(mydata[i].lat,mydata[i].lng);
 						thisradius = mydata[i].radius;
 						thisnym = mydata[i].nym;
+						thiscolor = rainbow(mydata[i].color);
 
 						// build circle
-						var currenthue = rainbow(hueslider.value);
 						thiscircle = L.circle(thislatlng, thisradius, {
-								color: currenthue,
-								fillColor: currenthue,
+								color: thiscolor,
+								fillColor: thiscolor,
 								fillOpacity: 0.25,
 								weight: 2
 						});

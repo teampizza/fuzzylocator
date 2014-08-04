@@ -76,7 +76,7 @@ map.on('click', function (e) {
 				mycircle = L.circle(window.latlng, radius, {
 						color: currenthue,
 						fillColor: currenthue,
-						fillOpacity: 0.5,
+						fillOpacity: 0.25,
 						weight: 2
 				});
 				mycircle.bindLabel(document.getElementById("nym").value)
