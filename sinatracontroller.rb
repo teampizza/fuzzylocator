@@ -30,7 +30,7 @@ header = ["_id", "radius", "lat", "lng" , "nym", "contact"]
 # (then return the document--commented out for debug)
 post '/submit' do
   content_type :json
-  new_id = settings.mongo_db['test'].insert params
+  new_id = settings.mongo_db['testdb'].insert params
   # document_by_id(new_id)
 end
 
@@ -43,7 +43,7 @@ post '/csvlist' do
   csv_string = CSV.generate do |csv|
     csv << header # stick our known header on first
     # then iterate over each row
-    JSON.parse(settings.mongo_db['test'].find.to_a.to_json).each do |entry|
+    JSON.parse(settings.mongo_db['testdb'].find.to_a.to_json).each do |entry|
       csv << entry.values
     end
   end
@@ -51,17 +51,18 @@ post '/csvlist' do
   csv_string #, :filename=> 'list.csv', :type=> 'text/csv'
 end
 
-# get a small HTML list of all documents
+# get a small HTML list of all documents for info pane
 get '/list' do
   content_type :html
   
-  hasharray_to_html(JSON.parse(settings.mongo_db['test'].find.to_a.to_json))
+  hasharray_to_html(JSON.parse(settings.mongo_db['testdb'].find.to_a.to_json))
 end
 
 # print all documents as json
 get '/documents' do
   content_type :json
-  settings.mongo_db['test'].find.to_a.to_json
+  
+  settings.mongo_db['testdb'].find.to_a.to_json
 end
 
 # find a document by its ID
@@ -75,7 +76,7 @@ end
 # delete the specified document and return success
 delete '/remove/:id' do
   content_type :json
-  db = settings.mongo_db['test']
+  db = settings.mongo_db['testdb']
   id = object_id(params[:id])
   if db.find_one(id)
     db.remove(:_id => id)
@@ -86,7 +87,7 @@ delete '/remove/:id' do
 end
 
 
-## overall view
+## overall view, for debugging only
 get '/collections/?' do
   content_type :json
   settings.mongo_db.collection_names.to_json
@@ -101,7 +102,7 @@ helpers do
 
   def document_by_id id
     id = object_id(id) if String === id
-    settings.mongo_db['test'].
+    settings.mongo_db['testdb'].
       find_one(:_id => id).to_json
   end
 end
