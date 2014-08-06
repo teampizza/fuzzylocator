@@ -72,6 +72,14 @@ setTimeout(function () {
 		}
 }, 600);
 
+function cssAddClass (id, newclass) { 
+		$( id ).addClass( newclass );
+}
+
+function cssDropClass (id, dropclass) {
+		$( id ).removeClass ( dropclass );
+}
+
 // GETs and POSTs
 // http://stackoverflow.com/a/4033310
 function httpGet(theUrl)

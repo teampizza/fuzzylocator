@@ -53,15 +53,29 @@ function doImage(err, canvas) {
 // enable drawing
 var circleenabled = false;
 drawcircle.onclick = function () {
-    if (circleenabled == false) { circleenabled = true; }
-    else { circleenabled = false;}
+    if (circleenabled == false) {
+				circledelete = false; // disable deleting
+				circleenabled = true;
+				cssAddClass("#map", "drawable"); // change to tool cursor
+		}
+    else {
+				circleenabled = false;
+				cssDropClass("#map", "drawable"); // remove cursor style
+		}
 };
 
 // enable deleting
 var circledelete = false;
 delcircle.onclick = function () {
-    if (circledelete == false) { circledelete = true; }
-    else { circledelete = false;}
+    if (circledelete == false) { 
+				circleenabled = false; // disable drawing
+				circledelete = true;
+				cssAddClass("#map", "deletable");
+		}
+    else { 
+				circledelete = false;
+				cssDropClass("#map", "deletable");
+		}
 };
 
 // draw circles on click
