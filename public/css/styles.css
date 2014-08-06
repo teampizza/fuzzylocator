@@ -1,7 +1,0 @@
-#map.deletable .leaflet-clickable, #map.deletable .leaflet-map-pane {
-		cursor: no-drop;
-}
-
-#map.drawable .leaflet-clickable, #map.drawable .leaflet-map-pane {
-		cursor: crosshair;
-}
