@@ -104,9 +104,9 @@ map.on('click', function (e) {
 										if (delok == true) {
 												map.removeLayer(mycircle);
 												// get lat/lng of circle to do db lookup and delete
-												var rmlatlng = mycircle.getLatLng();
+												rmlatlng = mycircle.getLatLng();
 												// make a form quickly to submit the coords to delete route
-												post_to_url("/remove/",[rmlatlng.lat, rmlatlng.lng]);
+												post_to_url("/remove/" + rmlatlng.lat + "/" + rmlatlng.lng, []);
 										}
 								}
 						});
@@ -172,20 +172,3 @@ function distFromLatLng(latlng, meters) {
 
 }
 
-function post_to_url(url, params) {
-    var postform = document.createElement('form');
-    postform.action = url;
-    postform.method = 'POST';
-
-    for (var i in params) {
-        if (params.hasOwnProperty(i)) {
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = i;
-            input.value = params[i];
-            postform.appendChild(input);
-        }
-    }
-
-    postform.submit();
-}

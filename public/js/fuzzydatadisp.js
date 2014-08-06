@@ -60,9 +60,10 @@ setTimeout(function () {
 												if (delok == true) {
 														map.removeLayer(thiscircle);
 														// get lat/lng of circle to do db lookup and delete
-														var rmlatlng = mycircle.getLatLng();
-														// make a form quickly to submit the coords to delete route
-														post_to_url("/remove/",[rmlatlng.lat, rmlatlng.lng]);
+														var rmlatlng = thiscircle.getLatLng();
+														
+														// make a form quickly to submit the coords to delete 
+														post_to_url("/remove/" + rmlatlng.lat + "/" + rmlatlng.lng, []);
 												}
 										}
 								});
@@ -71,7 +72,7 @@ setTimeout(function () {
 		}
 }, 600);
 
-// function to do GETs from within JS
+// GETs and POSTs
 // http://stackoverflow.com/a/4033310
 function httpGet(theUrl)
 {
@@ -81,4 +82,10 @@ function httpGet(theUrl)
     xmlHttp.open( "GET", theUrl, false );
     xmlHttp.send( null );
     return xmlHttp.responseText;
+}
+
+function post_to_url(url, params) {
+		// lol too easy with jQuery :\\\\
+		$.post(url, params)
+
 }

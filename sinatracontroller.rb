@@ -90,22 +90,14 @@ end
 
 # delete the specified entry by lat/lng
 post '/remove/:lat/:lng' do
-  content_type :json
-  
+  content_type :json  
   db = settings.mongo_db['testdb']
-#  id = object_id(params[:id])
   lat = params[:lat]
   lng = params[:lng]
 
-  p lat
-  p lng
-#  db.find( { :$and => [ { :lat => lat}, { :lng => lng } ] }, true )
-#     db.remove(:_id => id)
-#     {:success => true}.to_json
-#   else
-#     {:success => false}.to_json
-#   end
-#  erb :fuzzylocator
+  db.remove( { :$and => [ { :lat => lat}, { :lng => lng } ] } )
+
+  erb :fuzzylocator
 end
 
 
