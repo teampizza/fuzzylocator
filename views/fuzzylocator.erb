@@ -3,9 +3,8 @@
   <head>
     <link rel="stylesheet" href="/js/Leaflet/leaflet.css"></>
     <link rel="stylesheet" href="/js/leaflet-sidebar/src/L.Control.Sidebar.css"></>
-    <link rel="stylesheet" href="fuzzylocator.css"></>
     <link rel="stylesheet" href="/js/Leaflet.label/dist/leaflet.label.css"></>
-    <link rel="stylesheet" href="/css/styles.css"></>
+    <link rel="stylesheet" href="/css/fuzzylocator.css"></>
 
     <!-- <script src="./Leaflet/dist/leaflet.js"></script> -->
     <script src="/js/Leaflet.label/libs/leaflet/leaflet-src.js"></script>
@@ -66,9 +65,12 @@
 				<input name="color" id="hueslider" type="range" min="0" max="255" value="100" step="1"/>
 			</div>
 			
-			<button id="drawcircle" type="button">Draw Circle</button>
-			<button id="delcircle" type="button">Delete Circle</button>
-			
+			<div>
+				<input id="drawcircle" type="radio" name="grp1" class="css-checkbox" autocomplete="off" /><label for="drawcircle" name="drawlabel" class="css-label radGroup1">Draw Circle</label>
+				<input id="delcircle" type="radio" name="grp1" class="css-checkbox" autocomplete="off" /><label for="delcircle" name="dellabel" class="css-label radGroup1">Delete Circle</label>
+				<input id="disabletool" type="radio" name="grp1" class="css-checkbox" autocomplete="off" checked="checked"/><label for="disabletool" name="disablelabel" class="css-label radGroup1">View Only</label>
+			</div>
+
 			<p><strong>contact info</strong></p>
 			
 			<div class="form">
@@ -103,10 +105,9 @@
 
 
 
-
+	<script src="/js/mapinit.js"></script>
 	<script src="/js/fuzzylocator.js"></script>
 	<script src="/js/fuzzydatadisp.js"></script>
-
 
 
 </body>

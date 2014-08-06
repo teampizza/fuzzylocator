@@ -1,15 +1,4 @@
-///// Leaflet map stuff /////
-//
-// Create a map in the div #map
-var map = L.map('map').setView([21.30694, 157.85833], 2);
 
-// add an OpenStreetMap tile layer
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// add scale marker
-L.control.scale().addTo(map);
 
 // add sidebar
 var FuzzyMenu = L.control.sidebar('fuzzymenu', {
@@ -52,31 +41,35 @@ function doImage(err, canvas) {
 
 // enable drawing
 var circleenabled = false;
-drawcircle.onclick = function () {
+// enable deleting
+var circledelete = false;
+$("[id='drawcircle']").click(function () {
+		circledelete = false;
+		cssDropClass("#map", "deletable");
     if (circleenabled == false) {
 				circledelete = false; // disable deleting
 				circleenabled = true;
 				cssAddClass("#map", "drawable"); // change to tool cursor
 		}
-    else {
-				circleenabled = false;
-				cssDropClass("#map", "drawable"); // remove cursor style
-		}
-};
-
-// enable deleting
-var circledelete = false;
-delcircle.onclick = function () {
-    if (circledelete == false) { 
+});
+$("[id='delcircle']").click(function () {
+		//		else if(document.getElementById("delcircle").checked) {
+		circleenabled = false;
+		cssDropClass("#map", "drawable"); // remove cursor style
+		
+		if (circledelete == false) { 
 				circleenabled = false; // disable drawing
 				circledelete = true;
 				cssAddClass("#map", "deletable");
 		}
-    else { 
-				circledelete = false;
-				cssDropClass("#map", "deletable");
-		}
-};
+});
+$("[id='disabletool']").click(function () {
+		//		else if(document.getElementById("disabletool").checked) {
+		circledelete = false;
+		circleenabled= false;
+		cssDropClass("#map", "drawable"); // remove cursor style
+		cssDropClass("#map", "deletable");
+});
 
 // draw circles on click
 var mycircle; // TODO is this necessary?

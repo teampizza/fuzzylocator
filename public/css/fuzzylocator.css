@@ -43,31 +43,36 @@ html, body, #map {
 /* from http://www.csscheckbox.com/ */
 
 input[type=radio].css-checkbox {
-							display:none;
-						}
+		display:none;
+}
 
-						input[type=radio].css-checkbox + label.css-label {
-							padding-left:29px;
-							height:24px; 
-							display:inline-block;
-							line-height:24px;
-							background-repeat:no-repeat;
-							background-position: 0 0;
-							/* font-size:24px; */
-							vertical-align:middle;
-							cursor:pointer;
+input[type=radio].css-checkbox + label.css-label {
+		padding-left:29px;
+		height:24px; 
+		display:inline-block;
+		line-height:24px;
+		background-repeat:no-repeat;
+		background-position: 0 0;
+		/* font-size:24px; */
+		vertical-align:middle;
+		cursor:pointer;
+							
+}
 
-						}
+input[type=radio].css-checkbox:checked + label.css-label {
+		background-position: 0 -24px;
+}
 
-						input[type=radio].css-checkbox:checked + label.css-label {
-							background-position: 0 -24px;
-						}
-						label.css-label {
-								background-image:url(/img/radiobutton.png);
-				-webkit-touch-callout: none;
-				-webkit-user-select: none;
-				-khtml-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-			}
+label.css-label {
+		background-image:url(/img/radiobutton.png);
+		/* background-color: rgb(0,150,200); 
+		border-radius: 50%;
+		width: 1px;
+		height: 5px; */
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+}
