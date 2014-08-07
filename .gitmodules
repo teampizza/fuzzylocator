@@ -28,3 +28,9 @@
 [submodule "public/js/leaflet-sidebar"]
 	path = public/js/leaflet-sidebar
 	url = git@github.com:Turbo87/leaflet-sidebar.git
+[submodule "public/js/jQuery.print"]
+	path = public/js/jQuery.print
+	url = https://github.com/DoersGuild/jQuery.print.git
+[submodule "public/js/leaflet-tilefilter"]
+	path = public/js/leaflet-tilefilter
+	url = https://github.com/humangeo/leaflet-tilefilter.git
