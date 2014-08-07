@@ -96,10 +96,11 @@ post '/remove/:lat/:lng' do
   lng = params[:lng]
   
   # validation! check to make sure the lat/lng is valid
+  # doesn't work :(
   if lat.length > 0 and lng.length > 1
     db.remove( { :$and => [ { :lat => lat}, { :lng => lng } ] } )
   end
- 
+  
   erb :fuzzylocator
 end
   

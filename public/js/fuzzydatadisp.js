@@ -100,3 +100,8 @@ function post_to_url(url, params) {
 		$.post(url, params)
 
 }
+
+// workaround to stop radio buttons from getting sucked into submit
+$("#infoform").submit(function() {
+  $(this).find(":radio, :checkbox").prop('disabled', true);
+});
