@@ -43,6 +43,18 @@
 		background-color: rgba(30,30,30,1);
 }
 
+body table:not(:empty) {
+		background-color:#282828!important
+		/* box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.40); */
+}
+body table>tbody>tr:nth-child(even){
+		background-color:rgba(0,0,0,.5)!important
+
+}
+body table>tbody>tr>td:nth-child(odd){
+		background-color:rgba(0,0,0,.3)!important
+}
+
 input.slider {
 		box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.35);
 }
