@@ -1,0 +1,20 @@
+.leaflet-sidebar > .leaflet-control {
+		background-color: rgba(27,36,48,1);
+		color: #fff;
+}
+
+.leaflet-sidebar .close {
+		background-color: #000;
+		color: #CCC;
+}
+
+.form {
+		background-color: rgba(27,36,48,1);
+		color: #fff;
+}
+
+.leaflet-control-zoom, .leaflet-bar a {
+		background-color: rgba(27,36,48,1);
+		color: #fff;
+		box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.65);
+}

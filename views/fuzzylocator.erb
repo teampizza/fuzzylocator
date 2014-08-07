@@ -21,9 +21,13 @@
     <script src="/js/Leaflet.label/src/Map.Label.js"></script>
     <script src="/js/Leaflet.label/src/FeatureGroup.Label.js"></script>
 
-    <script src="/js/leaflet-image.js"></script>
+    <script src="/js/leaflet-tilefilter/dist/TileLayer.Filter.js"></script>
+
+    <script src="/js/html2canvas.js"></script>
 
     <script src="/js/jquery-2.1.1.min.js"></script>
+		<script src="/js/jQuery.print/jQuery.print.js"></script>
+		
 
     <meta charset="utf-8" />
     <title>leaflet / fuzzylocator</title>
@@ -36,6 +40,10 @@
 
 	<!-- first side pane with map drawing controls -->
   <div id="fuzzymenu">
+		<p>
+			<button id="darkenbutton" role="button">light</button>
+		</p>
+
     <h1>share info</h1>
     
     <p><strong>location options</strong></p>

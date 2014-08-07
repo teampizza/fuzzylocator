@@ -72,6 +72,9 @@ setTimeout(function () {
 		}
 }, 600);
 
+
+
+
 function cssAddClass (id, newclass) { 
 		$( id ).addClass( newclass );
 }

@@ -71,11 +71,13 @@ $("[id='disabletool']").click(function () {
 		cssDropClass("#map", "deletable");
 });
 
+// download a map screenshot
+document.getElementById("darkenbutton").addEventListener("click", function(){
+		darkmode();
+});
+
 // draw circles on click
 var mycircle; // TODO is this necessary?
-// get info
-
-
 map.on('click', function (e) {
 
 		// for adding circles
@@ -125,6 +127,43 @@ map.on('click', function (e) {
 function rainbow(n) {
     n = n * 240 / 255;
     return 'hsl(' + n + ',100%,50%)';
+}
+
+
+// darken interface
+var isdark = false;
+function darkmode() {
+
+		if (isdark == false) {
+				isdark = true;
+				
+				// load CSS
+				$('head').append('<link rel="stylesheet" href="/css/dark.css" type="text/css" />');
+
+				// change tile colors
+				baseLayer.setFilter(function () {
+						new L.CanvasFilter(this, {
+								channelFilter: function (imageData) {
+										return new L.CanvasChannelFilters.Invert(imageData, {
+												//                values: [100, 100]
+										}).render();
+								}
+						}).render();
+				});
+				
+		}
+
+		else if (isdark == true) {
+				isdark = false;
+
+				// unload CSS
+				$("link[href='/css/dark.css']").remove();
+
+				// change tile colors back
+				baseLayer.setFilter(function () {
+						L.ImageFilters.Presets.CSS.None;
+				});
+		}
 }
 
 // randomize lat/lng input
