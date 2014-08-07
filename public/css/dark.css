@@ -1,6 +1,26 @@
 .leaflet-sidebar > .leaflet-control {
 		background-color: rgba(27,36,48,1);
 		color: #fff;
+		box-shadow: 0px 1px 7px rgba(255,255,255,0.4);
+
+}
+
+.leaflet-sidebar > .leaflet-control:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    		/** To edit this background, follow this link:
+		http://svgeneration.com/generate/Overlapping-Thread with Glow?size=25.5&under-thread=000022&left=2b3a75&right=31417d&inner-glow=aaaaaa&outer-glow=000000&
+		**/
+		background-color: #000022;
+		background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHhtbG5zOnhsaW5rPSdodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rJyB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJz4KCTxkZWZzPgoJCTxnIGlkPSdhJz4KCQkJPHBhdGggZD0nTTUgNmwtNiAtNiB2LTIgbDYgNicgZmlsbC1vcGFjaXR5PScwJyBzdHJva2U9JyMyYjNhNzUnIC8+CgkJCTxwYXRoIGQ9J001IDVsNiAtNiB2LTIgbC02IDYnIGZpbGwtb3BhY2l0eT0nMCcgc3Ryb2tlPScjMzE0MTdkJyAvPgoJCTwvZz4KCQk8cGF0dGVybiBwYXR0ZXJuVW5pdHM9J3VzZXJTcGFjZU9uVXNlJyB4PScwJyB5PScwJyBpZD0ncCcgd2lkdGg9JzI1LjUnIGhlaWdodD0nMjUuNScgdmlld0JveD0nMCAwIDEwIDEwJz4KCQkJPHVzZSB4bGluazpocmVmPScjYScvPiAgCgkJCTx1c2UgeGxpbms6aHJlZj0nI2EnIHk9Jy00Jy8+CgkJCTx1c2UgeGxpbms6aHJlZj0nI2EnIHk9JzQnLz4KCQkJPHVzZSB4bGluazpocmVmPScjYScgeT0nOCcvPgoJCQk8dXNlIHhsaW5rOmhyZWY9JyNhJyB5PScxMicvPgoJCTwvcGF0dGVybj4KCQk8cmFkaWFsR3JhZGllbnQgZ3JhZGllbnRVbml0cz0ndXNlclNwYWNlT25Vc2UnIGlkPSdnJyBjeD0nNTAlJyBjeT0nNTAlJyBmeD0nMzAlJyBmeT0nMzAlJyByPSc2MCUnPgoJCQk8c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjYWFhYWFhJyBzdG9wLW9wYWNpdHk9Jy41JyAvPgoJCQk8c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMwMDAwMDAnIHN0b3Atb3BhY2l0eT0nLjcnIC8+CgkJCTwvcmFkaWFsR3JhZGllbnQ+Cgk8L2RlZnM+Cgk8cmVjdCB4PSctNSUnIHk9Jy01JScgd2lkdGg9JzExMCUnIGhlaWdodD0nMTEwJScgZmlsbD0nIzAwMDAyMicvPgoJPHJlY3Qgd2lkdGg9JzExMCUnIGhlaWdodD0nMTEwJScgZmlsbD0ndXJsKCNwKScvPgoJPHJlY3QgeD0nLTUlJyB5PSctNSUnIHdpZHRoPScxMTAlJyBoZWlnaHQ9JzExMCUnIGZpbGw9J3VybCgjZyknLz4KPC9zdmc+');
+
+    width: 100%;
+    height: 100%;
+    opacity : 0.2;
+    z-index: -1;
 }
 
 .leaflet-sidebar .close {
@@ -9,7 +29,7 @@
 }
 
 .form {
-		background-color: rgba(27,36,48,1);
+		/* background-color: rgba(27,36,48,1); */
 		color: #fff;
 }
 
@@ -17,4 +37,8 @@
 		background-color: rgba(27,36,48,1);
 		color: #fff;
 		box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.65);
+}
+
+#listpane .table {
+		background-color: rgba(30,30,30,1);
 }
