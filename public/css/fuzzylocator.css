@@ -37,6 +37,10 @@ html, body, #map {
 		cursor: crosshair;
 }
 
+/* trying to get the map background to not be so bright */
+.leaflet-container {
+		background: #333; !important
+}
 
 
 /* from http://www.csscheckbox.com/ */
