@@ -57,20 +57,20 @@
 			radius<br>
 			
 			<div>
-				<input name="radius" id="radius" type="range" min="100" max="6000000" value="100000" step="100"/> <!-- TODO make logarithmic -->
+				<input name="radius" id="radius" class="slider" type="range" min="100" max="6000000" value="100000" step="100"/> <!-- TODO make logarithmic -->
 			</div>
 			
 			jitter<br>
 			
 			<div>
-				<input id="jitter" type="range" min="0" max="1000" value="100" step="1"/>
+				<input id="jitter" class="slider" type="range" min="0" max="1000" value="100" step="1"/>
 			</div>
 			
 			
 			color<br>
 			
 			<div>
-				<input name="color" id="hueslider" type="range" min="0" max="255" value="100" step="1"/>
+				<input name="color" class="slider" id="hueslider" type="range" min="0" max="255" value="100" step="1"/>
 			</div>
 			
 			<div>
@@ -81,7 +81,7 @@
 
 			<p><strong>contact info</strong></p>
 			
-			<div class="form">
+			<div class="form", id="infoform">
 				<input type="hidden" id="formlat" name="lat">
 				<input type="hidden" id="formlng" name="lng">
 				
