@@ -94,12 +94,15 @@ post '/remove/:lat/:lng' do
   db = settings.mongo_db['testdb']
   lat = params[:lat]
   lng = params[:lng]
-
-  db.remove( { :$and => [ { :lat => lat}, { :lng => lng } ] } )
-
+  
+  # validation! check to make sure the lat/lng is valid
+  if lat.length > 0 and lng.length > 1
+    db.remove( { :$and => [ { :lat => lat}, { :lng => lng } ] } )
+  end
+ 
   erb :fuzzylocator
 end
-
+  
 
 ## overall view, for debugging only
 get '/collections/?' do
