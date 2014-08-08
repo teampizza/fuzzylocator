@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'mongo'
 require 'json/ext'
-require 'csv'
-require 'builder'
+require 'csv' # list export
+require 'builder' # needed for making tables from hashes
 
 # http://code.tutsplus.com/tutorials/singing-with-sinatra--net-18965
 set :public_folder, 'public'
@@ -13,49 +13,43 @@ include Mongo
 
 
 # what document do we want to talk to?
-class Suffix
-  @@docstring = "testdb"
-
-  def self.init()
-    @@docstring = "testdb"
-  end
-
-  def self.set(newstr)
-    @@docstring = newstr
-  end
-
-  def self.get()
-    return @@docstring
-  end
-
-end
+# class MapSession
+#   attr_accessor :suffix
+#   @@suffix = "testdb"
+# 
+# end
 
 configure do
   conn = MongoClient.new("localhost", 27017)
   set :mongo_connection, conn
   set :mongo_db, conn.db('testdb')
 
-  Suffix::init() # get suffix string set up
+  # session suffix
+  @@suffix = "testdb"
 end
 
 
 
-# view page
+# view new/random page
 get '/' do
-  
-  #### SESSION CODE
-  # p params[:page]
-  # if params[:page].nil? # /?page=nonce
-  #   Suffix::set(params[:page])
-  #   p Suffix::get()
-  # else
-  #   Suffix::set(randnonce(10))
-  #   p Suffix::get()
-  #   params[:page] = Suffix::get() # needed?
-  #   redirect '/?page=' + Suffix::get() # 302 needed?
-  # end
+  @@suffix = (randnonce(10))
+  redirect '/p/' + @@suffix # 302 is automatic
 
   erb :fuzzylocator
+end
+
+# view specific page
+get '/p/:page' do
+  @@suffix = params[:page]
+
+  erb :fuzzylocator
+end
+
+# empty URL etc
+['/p/', '/p'].each do |route|
+  get route do
+    redirect '/'
+  end
 end
 
 ##### DB stuff #####
@@ -66,7 +60,7 @@ header = ["_id", "color", "radius", "lat", "lng" , "nym", "contact"]
 # (then return the document--commented out for debug)
 post '/' do
   content_type :html
-  new_id = settings.mongo_db[Suffix::get()].insert params
+  new_id = settings.mongo_db[@@suffix].insert params
   # document_by_id(new_id)
 
   # reload page for now
@@ -82,7 +76,7 @@ post '/csvlist' do
   csv_string = CSV.generate do |csv|
     csv << header # stick our known header on first
     # then iterate over each row
-    JSON.parse(settings.mongo_db[Suffix::get()].find.to_a.to_json).each do |entry|
+    JSON.parse(settings.mongo_db[@@suffix].find.to_a.to_json).each do |entry|
       csv << entry.values
     end
   end
@@ -94,7 +88,7 @@ end
 get '/list' do
   content_type :html
   
-  myhash = JSON.parse(settings.mongo_db[Suffix::get()].find.to_a.to_json)
+  myhash = JSON.parse(settings.mongo_db[@@suffix].find.to_a.to_json)
   myhash.each do |hash|
     # drop items irrelevant for presentation
     hash.delete "_id"
@@ -112,7 +106,7 @@ end
 get '/documents' do
   content_type :json
   
-  settings.mongo_db[Suffix::get()].find.to_a.to_json
+  settings.mongo_db[@@suffix].find.to_a.to_json
 end
 
 # find a document by its ID
@@ -127,7 +121,7 @@ end
 # delete the specified entry by lat/lng
 post '/remove/:lat/:lng' do
   content_type :json  
-  db = settings.mongo_db[Suffix::get()]
+  db = settings.mongo_db[@@suffix]
   lat = params[:lat]
   lng = params[:lng]
   
@@ -156,7 +150,7 @@ helpers do
 
   def document_by_id id
     id = object_id(id) if String === id
-    settings.mongo_db[Suffix::get()].
+    settings.mongo_db[@@suffix].
       find_one(:_id => id).to_json
   end
 
