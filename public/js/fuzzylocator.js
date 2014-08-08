@@ -23,22 +23,6 @@ setTimeout(function () {
 }, 500);
 
 
-// button actions
-// download a map screenshot
-document.getElementById("mapdl").addEventListener("click", function(){
-		leafletImage(map, doImage);
-});
-
-function doImage(err, canvas) {
-    var img = document.createElement('img');
-    var dimensions = map.getSize();
-    img.width = dimensions.x;
-    img.height = dimensions.y;
-    img.src = canvas.toDataURL();
-    snapshot.innerHTML = '';
-    snapshot.appendChild(img);
-}
-
 // enable drawing
 var circleenabled = false;
 // enable deleting
