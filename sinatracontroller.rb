@@ -44,7 +44,7 @@ end
 end
 
 ##### DB stuff #####
-header = ["radius", "lat", "lng" , "nym", "contact"] # export header
+header = ["radius (m)", "lat", "lng" , "nym", "contact"] # export header
 
 ## insert entry (submit info)
 # insert a new document from the request parameters
