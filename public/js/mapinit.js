@@ -5,7 +5,7 @@ var map = L.map('map').setView([21.30694, 157.85833], 2);
 
 // add an OpenStreetMap tile layer
 var baseLayer = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | code &copy Team Pizza',
 
 }).addTo(map);
 

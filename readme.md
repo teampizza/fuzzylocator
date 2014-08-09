@@ -3,25 +3,41 @@ Info
 
 ### What is this?
 
-Fuzzy Locator is a toy app that (I hope) demonstrates the concept of *differential privacy* in announcing your location.  As Cynthia Dwork [showed in 2006](http://www.msr-waypoint.com/pubs/64346/dwork.pdf), it is impossible to create a database that is of use to anybody and guarantee *absolute privacy* at the same time. One approach to mitigating this risk is adding exponentially distributed noise to the data, as mentioned in the paper.
+Fuzzy Locator is a toy app that (I hope) demonstrates the concept of *differential privacy* in announcing your location.
 
-### Why?
+### Differential privacy
 
-Back in the 1990s, when the Internet was wild and free, kids (and adults, and aliens, and creatures from Beyond) could get on relatively anonymous chats like IRC and speak pretty frankly about whatever they were thinking, in whatever chatroom they happened to be in at the time. Just about nobody used their "real" names, though, and there weren't many data mining algorithms in play to pry that information out of their speaking style. One way to get to know somebody was to ask, `a/s/l?`. This was short for "what's your age, sex, and location?" Naturally, you were free to answer however you liked, which made it that much more interesting.
+As Cynthia Dwork [showed in 2006](http://www.msr-waypoint.com/pubs/64346/dwork.pdf), it is impossible to create a database that is of use to anybody and guarantee *absolute privacy* at the same time. One approach to mitigating this risk is adding exponentially distributed noise to the data, as mentioned in the paper. This allows one to reduce the amount of information leaked (arguably at the cost of reducing its utility--you're adding noise).
+
+### Ok, so what?
+
+Back in the 1990s, when the Internet was wild and free (kinda), kids (and adults, and aliens, and creatures from Beyond) could get on relatively anonymous chats like IRC and speak pretty frankly about whatever they were thinking, in whatever chatroom they happened to be in at the time. Just about nobody used their "real" names, though, and there weren't many data mining algorithms in play to pry identifiable information out of their speaking style. One way to get to know somebody was to ask, `a/s/l?`. This was short for "what's your age, sex, and location?" Naturally, you were free to answer however you liked.
 
 Nowadays multinational conglomerates demand "real" names from their users, mainly for the purpose of recording/predicting their behavior and trying to get them to buy stuff. Your IP address gives away your location, [typically within a few hundred meters](http://www.ipfingerprints.com/). Algorithms have been developed to [figure out your gender](http://www.hackerfactor.com/GenderGuesser.php) (whatever that means) from the words you use.
 
 There's not much room left for imagination these days.
 
-If you *do* hide your IP address through something like [Tor](https://www.torproject.org/), or you're exploring a different identity, something like this tool might help bring some of that back.
+If you *do* hide your IP address (and by extension, your location) through something like [Tor](https://www.torproject.org/), or you're exploring a different identity, something like this tool might help bring some of that back.
 
 ### How it works
 
-If you click somewhere on the map, and hit the "Draw Circle" button, a semi-transparent circle will appear near where you clicked. Specifically, it will have a radius as big as you set with the radius slider, and it will be randomly scooted in some direction according to the amount of noise you add with the jitter slider. You can pick whatever color feels right, too.
+The app serves up a world map that you can draw on. If you click the **Draw Circle** tool and click on the map, a semi-transparent circle will appear near where you clicked. Specifically, it will have a radius as big as you set with the **radius slider**, and it will be randomly scooted in some direction according to the position of the **noise slider**. You can pick whatever **color** feels right.
 
-Feel free to click around and play with the controls. No matter how you set the jitter or the radius, the circle will always contain the location you clicked on initially. (The circle will never lie if you don't.)
+No matter how you set the jitter or the radius, the circle will always contain the location you clicked on initially. (The circle will never lie if you don't.)
 
-Once you're happy with the result, you can enter whatever (pseudo)nym you like and any kind of contact info into the two text fields. If you hit "Submit Info", the position and radius of the circle will be added to the List tab. You can download the table as well as the map, if you like.
+Once you're happy with the result, you can enter whatever (pseudo)nym you like and any kind of contact info into the two text fields. When you hit Submit, the (randomly nudged) latitude and longitude of the circle, its radius, and your entered info will be added to the **list view**. Both the list view and map can be exported.
+
+### Trying it out yourself
+
+Clone the repo with the URL at the right, update the submodules, make sure you've got the gems, then fire up the controller with your favorite Ruby rack.
+
+```
+git clone thisrepo
+git submodule update --init --recursive
+sudo gem install sinatra mongo json/ext csv builder
+cd fuzzylocator/
+ruby sinatracontroller.rb
+```
 
 ### Licensing
 This application and all original code used therein are licensed under the GPLv3.
