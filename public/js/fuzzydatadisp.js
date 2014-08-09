@@ -74,9 +74,15 @@ setTimeout(function () {
 		}
 }, 600);
 
+// add the EdgeMarker to the map. It takes the options of a standard CircleMarker
+L.edgeMarker({radius:10,
+						 color: '#000',
+						 fillColor: '#999'}).addTo(map);
+
+
 // export map screenshot
 document.getElementById("mapdl").addEventListener("click", function(){
-		var opts = {
+		var opts = { // opts for loading spinner
 				lines: 11, // The number of lines to draw
 				length: 40, // The length of each line
 				width: 6, // The line thickness
