@@ -11,14 +11,6 @@ set :public_folder, 'public'
 # http://recipes.sinatrarb.com/p/databases/mongo?#article
 include Mongo
 
-
-# what document do we want to talk to?
-# class MapSession
-#   attr_accessor :suffix
-#   @@suffix = "testdb"
-# 
-# end
-
 configure do
   conn = MongoClient.new("localhost", 27017)
   set :mongo_connection, conn
@@ -27,7 +19,6 @@ configure do
   # session suffix
   @@suffix = "testdb"
 end
-
 
 
 # view new/random page
@@ -53,17 +44,20 @@ end
 end
 
 ##### DB stuff #####
-header = ["_id", "color", "radius", "lat", "lng" , "nym", "contact"]
+header = ["radius", "lat", "lng" , "nym", "contact"] # export header
 
 ## insert entry (submit info)
 # insert a new document from the request parameters
 # (then return the document--commented out for debug)
-post '/' do
+post '/p/:params' do
   content_type :html
-  new_id = settings.mongo_db[@@suffix].insert params
-  # document_by_id(new_id)
 
-  # reload page for now
+  # validation! check to make sure the lat/lng is valid
+  if params[:lat].length > 0 and params[:lng].length > 0
+    new_id = settings.mongo_db[@@suffix].insert params
+  end
+
+  # reload page for now, but would like to fix
   erb :fuzzylocator
 end
 
@@ -77,6 +71,11 @@ post '/csvlist' do
     csv << header # stick our known header on first
     # then iterate over each row
     JSON.parse(settings.mongo_db[@@suffix].find.to_a.to_json).each do |entry|
+      # clean up entry for export
+      entry = entry.keep_if do |key,val| 
+        ["radius", "lat", "lng", "nym", "contact"].include?(key)
+      end
+
       csv << entry.values
     end
   end
@@ -91,8 +90,9 @@ get '/list' do
   myhash = JSON.parse(settings.mongo_db[@@suffix].find.to_a.to_json)
   myhash.each do |hash|
     # drop items irrelevant for presentation
-    hash.delete "_id"
-    hash.delete "color"
+    hash = hash.keep_if do |key,val| 
+      ["radius", "lat", "lng", "nym", "contact"].include?(key)
+    end
 
     # round off long decimals
     hash['lat'] = hash['lat'].to_f.round(4)
@@ -103,18 +103,12 @@ get '/list' do
 end
 
 # print all documents as json
+# for populating circles on map
 get '/documents' do
   content_type :json
   
   settings.mongo_db[@@suffix].find.to_a.to_json
 end
-
-# find a document by its ID
-get '/document/:id/?' do
-  content_type :json
-  document_by_id(params[:id])
-end
-
 
 ## delete entries
 
@@ -124,42 +118,44 @@ post '/remove/:lat/:lng' do
   db = settings.mongo_db[@@suffix]
   lat = params[:lat]
   lng = params[:lng]
-  
-  # validation! check to make sure the lat/lng is valid
-  # doesn't work :(
-  if lat.length > 0 and lng.length > 1
-    db.remove( { :$and => [ { :lat => lat}, { :lng => lng } ] } )
-  end
+
+  db.remove( { :$and => [ { :lat => lat}, { :lng => lng } ] } )
   
   erb :fuzzylocator
 end
   
-
+##### DEBUG ONLY ROUTES #####
 ## overall view, for debugging only
-get '/collections/?' do
-  content_type :json
-  settings.mongo_db.collection_names.to_json
-end
+# get '/collections/?' do
+#   content_type :json
+#   settings.mongo_db.collection_names.to_json
+# end
 
+# find a document by its ID
+# get '/document/:id/?' do
+#   content_type :json
+#   document_by_id(params[:id])
+# end
+
+
+##### HELPERS #####
 helpers do
   # a helper method to turn a string ID
   # representation into a BSON::ObjectId
-  def object_id val
-    BSON::ObjectId.from_string(val)
-  end
-
-  def document_by_id id
-    id = object_id(id) if String === id
-    settings.mongo_db[@@suffix].
-      find_one(:_id => id).to_json
-  end
+  # def object_id val
+  #   BSON::ObjectId.from_string(val)
+  # end
+  # 
+  # def document_by_id id
+  #   id = object_id(id) if String === id
+  #   settings.mongo_db[@@suffix].
+  #     find_one(:_id => id).to_json
+  # end
 
   def randnonce len
     # http://stackoverflow.com/a/3572953
     (36**(len-1) + rand(36**len)).to_s(36)
   end
-
-
 
   ## making tables from hashes for easy display
   # http://stackoverflow.com/questions/2634024/generate-an-html-table-from-an-array-of-hashes-in-ruby
