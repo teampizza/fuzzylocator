@@ -164,7 +164,7 @@ function fuzzyinput(latlng) {
 		lngsign = Math.sign(Math.random()-0.5);
 
 		jitter = document.getElementById("jitter").value;
-		radius = document.getElementById("radius").value;
+		radius = logInput("radius",1000);
 		
 		// generate jitter for lat/long, without exceeding the maximum distance of
 		// radius meters from the point
@@ -178,6 +178,23 @@ function fuzzyinput(latlng) {
 		fuzzyLatLng = {lat: latlng.lat+latjitter, lng: latlng.lng+lngjitter};
 
 		return fuzzyLatLng;
+}
+
+function logInput(elid) {
+		// http://stackoverflow.com/a/846249/2023432
+		var position = document.getElementById(elid).value
+		// position will be between 0 and 100
+		var minp = 10;
+		var maxp = 1000000;
+		
+		// The result should be between 100 an 10000000
+		var minv = Math.log(10);
+		var maxv = Math.log(40000000);
+		
+		// calculate adjustment factor
+		var scale = (maxv-minv) / (maxp-minp);
+
+		return Math.exp(minv + scale*(position-minp));
 }
 
 // make random exponential numbers
