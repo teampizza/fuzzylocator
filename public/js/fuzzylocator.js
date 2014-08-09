@@ -7,7 +7,8 @@ var FuzzyMenu = L.control.sidebar('fuzzymenu', {
 });
 map.addControl(FuzzyMenu);
 
-menuButton = new L.Control.Button(L.DomUtil.get('menubutton'), { toggleButton: 'active' });
+menuButton = new L.Control.Button(L.DomUtil.get('menubutton'), { 
+		toggleButton: 'active' });
 menuButton.addTo(map);
 menuButton.on('click', function () {
     if (menuButton.isToggled()) {
@@ -15,6 +16,15 @@ menuButton.on('click', function () {
     } else {
         FuzzyMenu.show();
     }
+});
+
+lightButton = new L.Control.Button(L.DomUtil.get('darkenbutton'), {
+		toggleButton: 'active' });
+setTimeout(function () { // hack to put it on bottom of stack
+		lightButton.addTo(map);
+}, 500);
+lightButton.on('click', function () {
+		darkmode();
 });
 
 // display menu on load
@@ -56,9 +66,7 @@ $("[id='disabletool']").click(function () {
 });
 
 // download a map screenshot
-document.getElementById("darkenbutton").addEventListener("click", function(){
-		darkmode();
-});
+
 
 // draw circles on click
 var mycircle; // TODO is this necessary?

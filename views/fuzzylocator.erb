@@ -40,23 +40,22 @@
   </head>
 
 <body>
+	
 
-  <div id="map"></div>
-
+	
+	<div id="map">
+	
 	<!-- first side pane with map drawing controls -->
   <div id="fuzzymenu">
-		<p>
-			<button id="darkenbutton" role="button">light</button>
-		</p>
-
     <h1>share info</h1>
     
     <p><strong>location options</strong></p>
 		
     <!-- controls -->
-		<button id="menubutton" role="button" class="btn btn-primary">menu</button>
-		<button id="listbutton" role="button" class="btn btn-primary">share list</button>
-
+		<button id="menubutton" role="button" class="stockbutton darkbutton">menu</button>
+		<button id="listbutton" role="button" class="stockbutton darkbutton">share list</button>
+		<button id="darkenbutton" role="button" class="lightbutton stockbutton darkbutton">⛯</button>
+		
 		<form action="", method="post", id="infoform">
 			
 			radius<br>
@@ -86,21 +85,25 @@
 
 			<p><strong>contact info</strong></p>
 			
-			<div class="form"">
+			<div class="form">
 				<input type="hidden" id="formlat" name="lat">
 				<input type="hidden" id="formlng" name="lng">
 				
-				Nym: <input type="text" name="nym" id="nym" required><br>
-				Contact: <input type="text" name="contact" id="contact" required><br>
-				<input type="submit" value="Submit Location+Info"><br>
+				<div class="fieldset">
+					Nym: <input type="text" name="nym" id="nym" class="textbox" required><br>
+					Contact: <input type="text" name="contact" id="contact" class="textbox" required><br>
+					<input type="submit" value="Submit Location+Info" class="stockbutton darkbutton"><br>
+				</div>
 			</div>
 			
 		</form>
 
 		<p><strong>export</strong></p>
-    <button id="mapdl" type="button">Download Map</button>
-    <form action="/csvlist", method="post">
-			<button id="infodl" name="infodl" type="submit">Download Info</button>
+		<div class="exporters">
+			<button id="mapdl" type="button" class="stockbutton darkbutton">Download Map</button>
+			<form action="/csvlist", method="post">
+				<button id="infodl" name="infodl" type="submit" class="stockbutton darkbutton">Download Info</button>
+		</div>
 		</form>
 	</div>
 

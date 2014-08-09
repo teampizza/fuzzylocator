@@ -8,7 +8,23 @@ html, body, #map {
 }
 
 .form {
+		width: 0%;
+}
+
+.fieldset {
     text-align: right;
+}
+
+.textbox {
+		border: 2px solid #456879;
+		border-radius: 8px;
+}
+
+.exporters {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-box;
+		display: box;
 }
 
 .label { 
@@ -39,9 +55,25 @@ html, body, #map {
 
 /* trying to get the map background to not be so bright */
 .leaflet-container {
-		background: #333; !important
+		background: #333 !important;
 }
 
+/* Manual sizing for UI elements */
+.leaflet-sidebar.left {
+		width: 358px !important;
+}
+
+.leaflet-sidebar.right {
+		width: 450px !important;
+}
+
+.leaflet-sidebar.left.visible ~ .leaflet-left {
+    left: 360px;
+}
+
+.leaflet-sidebar.right.visible ~ .leaflet-right {
+    right: 455px;
+}
 
 /* from http://www.csscheckbox.com/ */
 
@@ -78,4 +110,29 @@ label.css-label {
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
+}
+
+.stockbutton {
+  font-family: arial;
+  color: #FFFFFF !important;
+  font-size: 14px;
+  /* box-shadow: 0px 1px 1px #BBEEEE; */
+  padding: 4px 6px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  border: 1px solid #3866A3;
+  background: #1B7BD2;
+	margin-top: 2px;
+	margin-left: 2px;
+}
+
+.stockbutton:hover {
+  color: #000000 !important;
+  background: #44AFCF;
+}
+
+.lightbutton  {
+		font-size: 20px;
+		padding: 0px 4px !important;
 }

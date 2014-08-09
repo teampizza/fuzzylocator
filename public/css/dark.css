@@ -33,6 +33,13 @@
 		color: #fff;
 }
 
+fieldset.input.textbox {
+		background-color: black !important;
+		color: white !important;
+		border:2px solid #456879;
+		border-radius: 10px;
+}
+
 .leaflet-control-zoom, .leaflet-bar a {
 		background-color: rgba(27,36,48,1);
 		color: #fff;
