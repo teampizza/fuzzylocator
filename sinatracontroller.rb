@@ -172,7 +172,8 @@ helpers do
         html.tr { row.values.each { |value| html.td(value) }}
       end
     }
-    return html
+
+    return html.target!
   end
 end
 
