@@ -81,8 +81,9 @@ map.on('click', function (e) {
 						fillOpacity: 0.25,
 						weight: 2
 				});
-				mycircle.bindLabel(document.getElementById("nym").value)
-						.addTo(map);
+				mycircle.bindLabel(document.getElementById("nym"), {
+								direction: 'auto'
+				}.value).addTo(map);
 
 				// add to form for submission
 				document.getElementById("formlat").value = window.latlng.lat;
@@ -112,7 +113,6 @@ function rainbow(n) {
     n = n * 240 / 255;
     return 'hsl(' + n + ',100%,50%)';
 }
-
 
 // darken interface
 var isdark = false;

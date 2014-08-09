@@ -50,7 +50,9 @@ setTimeout(function () {
 						});
 		
 						// add to map
-						thiscircle.bindLabel(thisnym).addTo(map);
+						thiscircle.bindLabel(thisnym,{
+								direction: 'auto'
+						}).addTo(map);
 
 						// make circle deletable with closure for scope
 						(function (thiscircle) {
