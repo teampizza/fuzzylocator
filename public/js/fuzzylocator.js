@@ -1,5 +1,3 @@
-
-
 // add sidebar
 var FuzzyMenu = L.control.sidebar('fuzzymenu', {
     closeButton: true,
@@ -96,6 +94,7 @@ map.on('click', function (e) {
 				// add to form for submission
 				document.getElementById("formlat").value = window.latlng.lat;
 				document.getElementById("formlng").value = window.latlng.lng;
+				document.getElementById("formrad").value = radius;
 
 				// make circle deletable (closure for scope)
 				(function (mycircle) {
@@ -163,14 +162,12 @@ function fuzzyinput(latlng) {
 		latsign = Math.sign(Math.random()-0.5);
 		lngsign = Math.sign(Math.random()-0.5);
 
-		jitter = document.getElementById("jitter").value;
-		radius = logInput("radius",1000);
+		jitter =  logInput("jitter",1,1000,0.0001,10000); // document.getElementById("jitter").value;
+		radius = logInput("radius",10,1000000,10,25000000);
 		
 		// generate jitter for lat/long, without exceeding the maximum distance of
 		// radius meters from the point
 		offset = distFromLatLng(latlng, radius);
-		
-		// console.log("offset: ", offset);
 
 		latjitter = latsign*Math.min(randomExponential(1/jitter), offset.lat)*Math.sqrt(2)/2;
 		lngjitter = lngsign*Math.min(randomExponential(1/jitter), offset.lng)*Math.sqrt(2)/2;
@@ -180,16 +177,16 @@ function fuzzyinput(latlng) {
 		return fuzzyLatLng;
 }
 
-function logInput(elid) {
+function logInput(elid,minp,maxp,minout,maxout) {
 		// http://stackoverflow.com/a/846249/2023432
 		var position = document.getElementById(elid).value
 		// position will be between 0 and 100
-		var minp = 10;
-		var maxp = 1000000;
+		// var minp = 10;
+		// var maxp = 1000000;
 		
 		// The result should be between 100 an 10000000
-		var minv = Math.log(10);
-		var maxv = Math.log(40000000);
+		var minv = Math.log(minout);
+		var maxv = Math.log(maxout);
 		
 		// calculate adjustment factor
 		var scale = (maxv-minv) / (maxp-minp);
@@ -219,7 +216,7 @@ function distFromLatLng(latlng, meters) {
 		// using pure spherical approximation
 
 		latoffset = meters/111111;
-		lngoffset = meters/(111111)*Math.cos(latlng.lat);
+		lngoffset = meters/(111111*Math.cos(latlng.lat*Math.PI/180));
 
 		offset = {lat: latoffset, lng: lngoffset};
 

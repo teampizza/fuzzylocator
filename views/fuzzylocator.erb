@@ -37,7 +37,7 @@
 		
 
     <meta charset="utf-8" />
-    <title>leaflet / fuzzylocator</title>
+    <title>fuzzylocator</title>
 
   </head>
 
@@ -63,13 +63,13 @@
 			radius<br>
 			
 			<div>
-				<input name="radius" id="radius" class="slider" type="range" min="10" max="1000000" value="100000" step="1000"/> <!-- TODO make logarithmic -->
+				<input id="radius" class="slider" type="range" min="10" max="1000000" value="100000" step="1000"/> <!-- TODO make logarithmic -->
 			</div>
 			
 			jitter<br>
 			
 			<div>
-				<input id="jitter" class="slider" type="range" min="0" max="1000" value="100" step="1"/>
+				<input id="jitter" class="slider" type="range" min="0.001" max="4500" value="10" step="0.01"/>
 			</div>
 			
 			
@@ -88,6 +88,7 @@
 			<p><strong>contact info</strong></p>
 			
 			<div class="form">
+				<input type="hidden" id="formrad" name="radius">
 				<input type="hidden" id="formlat" name="lat">
 				<input type="hidden" id="formlng" name="lng">
 				
