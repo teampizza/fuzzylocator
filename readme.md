@@ -7,7 +7,7 @@ Fuzzy Locator is a toy app that (I hope) demonstrates the concept of *differenti
 
 ### Differential privacy
 
-As Cynthia Dwork [showed in 2006](http://www.msr-waypoint.com/pubs/64346/dwork.pdf), it is impossible to create a database that is of use to anybody and guarantee *absolute privacy* at the same time. One approach to mitigating this risk is adding exponentially distributed noise to the data, as mentioned in the paper. This allows one to reduce the amount of information leaked (arguably at the cost of reducing its utility--you're adding noise).
+As Cynthia Dwork [showed in 2006](http://www.msr-waypoint.com/pubs/64346/dwork.pdf), it is impossible to create a database that is of use to anybody and guarantee *absolute privacy* at the same time. (This means that anytime someone tells you your info has been "anonymized" by removing your name in a database, they're misleading you.) One approach to mitigating this risk is adding exponentially distributed noise to the data, as mentioned in the paper. This allows one to reduce the amount of information leaked (arguably at the cost of reducing its utility--you're adding noise).
 
 ### Ok, so what?
 
