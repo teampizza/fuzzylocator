@@ -50,7 +50,7 @@ setTimeout(function () {
 						});
 		
 						// add to map
-						var thiscircle.bindLabel(thisnym,{
+						thiscircle.bindLabel(thisnym,{
 								direction: 'auto'
 						}).addTo(map);
 
