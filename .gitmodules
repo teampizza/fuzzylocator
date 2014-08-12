@@ -1,15 +1,9 @@
-[submodule "mapbox.js"]
-	path = mapbox.js
-	url = git@github.com:mapbox/mapbox.js.git
 [submodule "Leaflet"]
 	path = Leaflet
-	url = git@github.com:Leaflet/Leaflet.git
-[submodule "leaflet-sidebar"]
-	path = leaflet-sidebar
-	url = git@github.com:Turbo87/leaflet-sidebar.git
+	url = https://github.com/Leaflet/Leaflet.git
 [submodule "Leaflet.Ellipse"]
 	path = Leaflet.Ellipse
-	url = git@github.com:jdfergason/Leaflet.Ellipse.git
+	url = https://github.com/jdfergason/Leaflet.Ellipse.git
 [submodule "leaflet-button"]
 	path = leaflet-button
 	url = https://github.com/jerroydmoore/leaflet-button.git
@@ -18,19 +12,19 @@
 	url = https://github.com/Leaflet/Leaflet.label.git
 [submodule "public/js/Leaflet"]
 	path = public/js/Leaflet
-	url = git@github.com:Leaflet/Leaflet.git
+	url = https://github.com/Leaflet/Leaflet.git
 [submodule "public/js/leaflet-button"]
 	path = public/js/leaflet-button
 	url = https://github.com/jerroydmoore/leaflet-button.git
 [submodule "public/js/Leaflet.label"]
 	path = public/js/Leaflet.label
 	url = https://github.com/Leaflet/Leaflet.label.git
-[submodule "public/js/leaflet-sidebar"]
-	path = public/js/leaflet-sidebar
-	url = git@github.com:Turbo87/leaflet-sidebar.git
 [submodule "public/js/jQuery.print"]
 	path = public/js/jQuery.print
 	url = https://github.com/DoersGuild/jQuery.print.git
 [submodule "public/js/leaflet-tilefilter"]
 	path = public/js/leaflet-tilefilter
 	url = https://github.com/humangeo/leaflet-tilefilter.git
+[submodule "public/js/leaflet-sidebar"]
+	path = public/js/leaflet-sidebar
+	url = https://github.com/Turbo87/leaflet-sidebar.git
