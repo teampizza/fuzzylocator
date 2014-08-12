@@ -101,6 +101,7 @@ get '/list' do
     # round off long decimals
     hash['lat'] = hash['lat'].to_f.round(4)
     hash['lng'] = hash['lng'].to_f.round(4)
+    hash['radius'] = hash['radius'].to_f.round(0)
   end
 
   hasharray_to_html(myhash)
