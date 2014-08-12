@@ -1,6 +1,6 @@
-////// things for interacting with the submitted data visually //////
+/***** DATA INTERACTION *****/
 
-// add sidebar
+// add data sidebar
 var FuzzyList = L.control.sidebar('fuzzylist', {
     closeButton: true,
     position: 'right'
@@ -36,13 +36,13 @@ setTimeout(function () {
 					  mydata[i].hasOwnProperty("color")) {
 						// extract circles, props (TODO add color to submit)
 			
-						thislatlng = L.latLng(mydata[i].lat,mydata[i].lng);
-						thisradius = mydata[i].radius;
-						thisnym = mydata[i].nym;
-						thiscolor = rainbow(mydata[i].color);
+						var thislatlng = L.latLng(mydata[i].lat,mydata[i].lng);
+						var thisradius = mydata[i].radius;
+						var thisnym = mydata[i].nym;
+						var thiscolor = rainbow(mydata[i].color);
 
 						// build circle
-						thiscircle = L.circle(thislatlng, thisradius, {
+						var thiscircle = L.circle(thislatlng, thisradius, {
 								color: thiscolor,
 								fillColor: thiscolor,
 								fillOpacity: 0.25,
@@ -50,7 +50,7 @@ setTimeout(function () {
 						});
 		
 						// add to map
-						thiscircle.bindLabel(thisnym,{
+						var thiscircle.bindLabel(thisnym,{
 								direction: 'auto'
 						}).addTo(map);
 

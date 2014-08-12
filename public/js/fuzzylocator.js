@@ -1,3 +1,8 @@
+/***** CONTROLS/MENUS *****/
+
+// add scale marker
+L.control.scale().addTo(map);
+
 // add sidebar
 var FuzzyMenu = L.control.sidebar('fuzzymenu', {
     closeButton: true,
@@ -63,9 +68,6 @@ $("[id='disabletool']").click(function () {
 		cssDropClass("#map", "deletable");
 });
 
-// download a map screenshot
-
-
 // draw circles on click
 var mycircle; // TODO is this necessary?
 map.on('click', function (e) {
@@ -78,7 +80,7 @@ map.on('click', function (e) {
 				};
 				
 				// export the latlng data to the window for other funcs
-				window.latlng = fuzzyinput(e.latlng);
+				window.latlng = fuzzyInput(e.latlng);
 				
 				var currenthue = rainbow(hueslider.value);
 				mycircle = L.circle(window.latlng, radius, {
@@ -117,7 +119,7 @@ map.on('click', function (e) {
 
 // make color from slider
 function rainbow(n) {
-    n = n * 240 / 255;
+    var n = n * 240 / 255;
     return 'hsl(' + n + ',100%,50%)';
 }
 
@@ -147,7 +149,7 @@ function darkmode() {
 		else if (isdark == true) {
 				isdark = false;
 
-				// unload CSS
+				// unload dark CSS
 				$("link[href='/css/dark.css']").remove();
 
 				// change tile colors back
@@ -158,21 +160,22 @@ function darkmode() {
 }
 
 // randomize lat/lng input
-function fuzzyinput(latlng) {
-		latsign = Math.sign(Math.random()-0.5);
-		lngsign = Math.sign(Math.random()-0.5);
+function fuzzyInput(latlng) {
+		var latsign = Math.sign(Math.random()-0.5);
+		var lngsign = Math.sign(Math.random()-0.5);
 
-		jitter =  logInput("jitter",1,1000,0.0001,10000); // document.getElementById("jitter").value;
-		radius = logInput("radius",10,1000000,10,25000000);
+		// global because they substitute for form element values
+		window.jitter =  logInput("jitter",1,1000,0.0001,10000);
+	  window.radius = logInput("radius",10,1000000,10,25000000);
 		
 		// generate jitter for lat/long, without exceeding the maximum distance of
 		// radius meters from the point
-		offset = distFromLatLng(latlng, radius);
+		var offset = distFromLatLng(latlng, radius);
 
-		latjitter = latsign*Math.min(randomExponential(1/jitter), offset.lat)*Math.sqrt(2)/2;
-		lngjitter = lngsign*Math.min(randomExponential(1/jitter), offset.lng)*Math.sqrt(2)/2;
+		var latjitter = latsign*Math.min(randomExponential(1/jitter), offset.lat)*Math.sqrt(2)/2;
+		var lngjitter = lngsign*Math.min(randomExponential(1/jitter), offset.lng)*Math.sqrt(2)/2;
 
-		fuzzyLatLng = {lat: latlng.lat+latjitter, lng: latlng.lng+lngjitter};
+		var fuzzyLatLng = {lat: latlng.lat+latjitter, lng: latlng.lng+lngjitter};
 
 		return fuzzyLatLng;
 }
@@ -215,10 +218,10 @@ function distFromLatLng(latlng, meters) {
 		// computes lat/long offset from given meter offset
 		// using pure spherical approximation
 
-		latoffset = meters/111111;
-		lngoffset = meters/(111111*Math.cos(latlng.lat*Math.PI/180));
+		var latoffset = meters/111111;
+		var lngoffset = meters/(111111*Math.cos(latlng.lat*Math.PI/180));
 
-		offset = {lat: latoffset, lng: lngoffset};
+		var offset = {lat: latoffset, lng: lngoffset};
 
 		return offset;
 

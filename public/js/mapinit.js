@@ -9,5 +9,4 @@ var baseLayer = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 }).addTo(map);
 
-// add scale marker
-L.control.scale().addTo(map);
+
