@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'sinatra'
 require 'mongo'
 require 'json/ext'
+# require 'bson/ext' # for mongo
 require 'csv' # list export
 require 'builder' # needed for making tables from hashes
 
