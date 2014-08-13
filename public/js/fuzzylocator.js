@@ -227,3 +227,12 @@ function distFromLatLng(latlng, meters) {
 
 }
 
+// Math.sign for crappy browsers that don't support it
+if (typeof(Math.sign) != "function") {
+		Math.sign = function(x) {
+				if( +x === x ) { // check if a number was given
+						return (x === 0) ? x : (x > 0) ? 1 : -1;
+				}
+				return NaN;
+		}
+}
