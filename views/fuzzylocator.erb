@@ -35,6 +35,7 @@
     <script src="/js/jquery-2.1.1.min.js"></script>
 		<script src="/js/jQuery.print/jQuery.print.js"></script>
 		
+		<script src="/js/miscfuncs.js"></script>
 
     <meta charset="utf-8" />
     <title>fuzzylocator</title>
@@ -43,7 +44,6 @@
 
 <body>
 	
-
 	
 	<div id="map">
 	
@@ -63,22 +63,27 @@
 			radius<br>
 			
 			<div>
-				<input id="radius" class="slider" type="range" min="10" max="1000000" value="100000" step="1000"/> <!-- TODO make logarithmic -->
+				<input id="radius" class="slider" type="range" min="10" max="1000000" value="100000" step="1000" onchange="document.getElementById('radiuslabel').innerHTML = logInput('radius',10,1000000,10,25000000).toFixed(4);" /> 
+				<em id="radiuslabel" style="font-style: normal;">100000</em>
 			</div>
 			
 			noise<br>
 			
 			<div>
-				<input id="jitter" class="slider" type="range" min="0.001" max="4500" value="10" step="0.01"/>
+				<input id="jitter" class="slider" type="range" min="0.001" max="4500" value="10" step="0.01" onchange="document.getElementById('jitterlabel').innerHTML = logInput('jitter',1,1000,0.0001,10000).toPrecision(4);" /> 
+				<em id="jitterlabel" style="font-style: normal;">0.0001</em>
 			</div>
 			
 			
 			color<br>
 			
 			<div>
-				<input name="color" class="slider" id="hueslider" type="range" min="0" max="255" value="100" step="1"/>
+				<input name="color" class="slider" id="hueslider" type="range" min="0" max="255" value="100" step="1" onchange="colorBox('colorlabel',this.value)" />
+				<canvas id="colorlabel" width="40" height="22"></canvas>
+				<!-- initial color draw -->
+				<script>colorBox("colorlabel",100)</script>
 			</div>
-			
+			<br>
 			<div>
 				<input id="drawcircle" type="radio" name="grp1" class="css-checkbox" autocomplete="off" /><label for="drawcircle" name="drawlabel" class="css-label radGroup1">Draw Circle</label>
 				<input id="delcircle" type="radio" name="grp1" class="css-checkbox" autocomplete="off" /><label for="delcircle" name="dellabel" class="css-label radGroup1">Delete Circle</label>
@@ -120,8 +125,6 @@
 			
 		</div>
 	</div>
-
-
 
 
 	<script src="/js/mapinit.js"></script>
