@@ -15,6 +15,7 @@ var t = L.terminator({
 		weight: 1
 });
 t.addTo(map);
+
 setInterval(function(){updateTerminator(t)}, 2000);
 function updateTerminator(t) {
   var t2 = L.terminator();

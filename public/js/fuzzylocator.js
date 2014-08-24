@@ -30,6 +30,15 @@ lightButton.on('click', function () {
 		darkmode();
 });
 
+termButton = new L.Control.Button(L.DomUtil.get('termbutton'), {
+		toggleButton: 'active' });
+setTimeout(function () { // hack to put it on bottom of stack
+		termButton.addTo(map);
+}, 500);
+termButton.on('click', function () {
+		termmode();
+});
+
 // display menu on load
 setTimeout(function () {
     FuzzyMenu.show();
@@ -153,3 +162,21 @@ function darkmode() {
 				});
 		}
 }
+
+// darken interface
+var isterm = true;
+function termmode() {
+		
+		if (isterm == false) {
+				isterm = true;
+
+				t.addTo(map);
+		}
+
+		else if (isterm == true) {
+				isterm = false;
+				
+				map.removeLayer(t);
+		}
+
+}				
