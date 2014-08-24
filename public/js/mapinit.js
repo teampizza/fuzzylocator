@@ -10,3 +10,14 @@ var baseLayer = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
+var t = L.terminator({
+		resolution: 2,
+		weight: 1
+});
+t.addTo(map);
+setInterval(function(){updateTerminator(t)}, 2000);
+function updateTerminator(t) {
+  var t2 = L.terminator();
+  t.setLatLngs(t2.getLatLngs());
+  t.redraw();
+}
