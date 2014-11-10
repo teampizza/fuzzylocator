@@ -25,7 +25,7 @@ The app serves up a world map that you can draw on. If you click the **Draw Circ
 
 No matter how you set the jitter or the radius, the circle will always contain the location you clicked on initially. (The circle will never lie if you don't.)
 
-Once you're happy with the result, you can enter whatever (pseudo)nym you like and any kind of contact info into the two text fields. When you hit Submit, the (randomly nudged) latitude and longitude of the circle, its radius, and your entered info will be added to the **list view**. Both the list view and map can be exported.
+Once you're happy with the result, you can enter whatever (pseudo)nym you like and any kind of contact info into the two text fields. When you hit Submit, the (randomly nudged) latitude and longitude of the circle, its radius, and your entered info will be added to the **list view**. Both the list view and map can be exported, and you can share the URL to let others add their info or view the map.
 
 ### Trying it out yourself
 
