@@ -32,7 +32,7 @@ Once you're happy with the result, you can enter whatever (pseudo)nym you like a
 Clone the repo with the URL at the right, update the submodules, make sure you've got the gems, then fire up the controller with your favorite Ruby rack.
 
 ```
-git clone thisrepo
+git clone https://github.com/talexand/fuzzylocator.git
 git submodule update --init --recursive
 sudo gem install sinatra mongo json/ext csv builder
 cd fuzzylocator/
